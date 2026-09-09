@@ -714,15 +714,37 @@ button:focus-visible {
   object-fit: contain;
 }
 
+/* faixa da home com as empresas representadas: uma fileira só, sem sobra */
+.logos-5 { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+
 .logos-foot { margin-top: 30px; }
 
-/* --------------------------------------------------- grid de marcas (8) */
+/* ------------------------------- grid de empresas representadas e marcas */
 
 .grid {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 22px;
 }
+
+/* .grid-5: fileira das empresas representadas — cartão com selo de segmento
+   e uma linha de descrição. .grid-6: fileira densa das marcas de gôndola,
+   só logo, nome e a empresa dona. Mesmo cartão, densidades diferentes. */
+.grid-5 { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+
+.grid-5 .card-body { padding: 20px 18px 24px; }
+
+.grid-6 { grid-template-columns: repeat(6, minmax(0, 1fr)); }
+
+/* fundo branco na vitrine das marcas: vários logos vêm com moldura branca
+   embutida e ela desaparece contra o cartão em vez de virar um quadrado. */
+.grid-6 .card-plate { height: 112px; padding: 16px; background: var(--white); }
+
+.grid-6 .card img { max-height: 72px; max-width: 86%; }
+
+.grid-6 .card-body { padding: 16px 16px 18px; }
+
+.grid-6 .card h3 { font-size: 1.02rem; margin-bottom: 8px; }
 
 .grid .card {
   display: flex;
@@ -750,6 +772,14 @@ button:focus-visible {
   border-bottom: 1px solid var(--line);
 }
 
+/* marca cujo logo oficial é branco (Sal Lebre) sumiria no cartão claro:
+   só essa placa recebe fundo azul-marinho. */
+.card-plate-dark,
+.grid-6 .card-plate-dark {
+  background: var(--navy);
+  border-bottom-color: var(--navy);
+}
+
 .card-body { padding: 22px 24px 26px; }
 
 .card-body h3 { margin-bottom: 10px; }
@@ -766,6 +796,14 @@ button:focus-visible {
 }
 
 .card-body .tag + p { margin-top: 0; }
+
+/* selo neutro: diz a que empresa a marca pertence sem competir com o nome */
+.card-body .tag-owner {
+  margin-bottom: 0;
+  background: var(--paper);
+  color: var(--muted);
+  font-weight: 600;
+}
 
 /* --------------------------------------------------------- faixa de ação */
 
@@ -901,6 +939,10 @@ button:focus-visible {
   .grid,
   .logos { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 
+  .grid-5,
+  .grid-6,
+  .logos-5 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+
   .footer-top {
     grid-template-columns: 1fr 1fr;
     gap: 32px;
@@ -984,6 +1026,13 @@ button:focus-visible {
   .cards-5,
   .grid,
   .steps { grid-template-columns: 1fr; }
+
+  /* marcas de gôndola seguem 2 por linha no celular: o cartão é só logo,
+     nome e empresa, e uma coluna só deixaria a seção longa demais.
+     As empresas representadas, que têm descrição, caem para uma coluna
+     junto com o .grid comum. */
+  .grid-6,
+  .logos-5 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 
   .card-plate { height: 96px; }
 
