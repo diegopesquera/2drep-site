@@ -143,13 +143,53 @@ button:focus-visible {
    (1024x1024) e a faixa é larga: "cover" + "center" recorta sem distorcer.
    O gradiente na frente é o que garante contraste do texto branco. */
 .hero-mercado {
+  /* Só o gradiente fica no elemento; a ilustração vai para a camada
+     ::before, que é o que se move. Sem isso, animar o background moveria
+     o gradiente junto e o texto perderia contraste no meio do caminho. */
   background-image:
     linear-gradient(100deg,
       rgba(17, 17, 46, 0.94) 0%,
       rgba(20, 20, 56, 0.85) 42%,
       rgba(19, 33, 56, 0.52) 76%,
-      rgba(18, 42, 54, 0.32) 100%),
-    url("../assets/ai/hero-mercado.webp");
+      rgba(18, 42, 54, 0.32) 100%);
+  overflow: hidden;
+  isolation: isolate;
+}
+
+/* Camada da ilustração, atrás do gradiente e do conteúdo.
+   Movimento lento e contínuo (deriva + zoom quase imperceptível): dá vida
+   sem competir com a leitura. 38s é longo de propósito — animação curta
+   em fundo institucional cansa e chama atenção para si. */
+.hero-mercado::before {
+  content: "";
+  position: absolute;
+  inset: -6%;                 /* folga para o movimento não descobrir a borda */
+  z-index: -2;
+  background-image: url("../assets/ai/hero-mercado.webp");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  transform-origin: 58% 45%;
+  animation: hero-deriva 38s ease-in-out infinite alternate;
+  will-change: transform;
+}
+
+/* O gradiente precisa ficar entre a ilustração e o texto. */
+.hero-mercado::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(100deg,
+    rgba(17, 17, 46, 0.94) 0%,
+    rgba(20, 20, 56, 0.85) 42%,
+    rgba(19, 33, 56, 0.52) 76%,
+    rgba(18, 42, 54, 0.32) 100%);
+}
+
+@keyframes hero-deriva {
+  from { transform: scale(1.06) translate3d(0, 0, 0); }
+  to   { transform: scale(1.14) translate3d(-1.6%, -1.1%, 0); }
 }
 
 .hero-industria {
@@ -1060,4 +1100,6 @@ button:focus-visible {
 
 @media (prefers-reduced-motion: reduce) {
   * { transition: none !important; }
+  /* Quem configurou o sistema para menos movimento vê o hero parado. */
+  .hero-mercado::before { animation: none; transform: scale(1.06); }
 }
