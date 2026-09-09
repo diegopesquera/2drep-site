@@ -1,0 +1,1014 @@
+/* ==========================================================================
+   2D Representações — folha de estilo única do site institucional
+   Identidade: fundo branco, azul-marinho #2e2e70, verde #1c9b57,
+   tipografia de sistema, bordas de 12px. Sem JavaScript.
+   ========================================================================== */
+
+:root {
+  --navy: #2e2e70;
+  --navy-deep: #23234f;
+  --navy-soft: #4a4a93;
+  --green: #1c9b57;
+  --green-deep: #157a45;
+  --ink: #1e2140;
+  --muted: #5c6180;
+  --line: #e3e4ee;
+  --paper: #f4f5fa;
+  --white: #ffffff;
+
+  --radius: 12px;
+  --radius-sm: 8px;
+  --container: 1120px;
+  --font: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+* { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  background: var(--white);
+  color: var(--ink);
+  font-family: var(--font);
+  font-size: 17px;
+  line-height: 1.65;
+  overflow-wrap: break-word;
+}
+
+img { max-width: 100%; }
+
+h1, h2, h3, p, ul, ol, figure { margin: 0; }
+
+h1, h2, h3 {
+  color: var(--navy);
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+
+a { color: var(--navy); }
+
+a:focus-visible,
+button:focus-visible {
+  outline: 3px solid var(--green);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+.container {
+  max-width: var(--container);
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* --------------------------------------------------------------- cabeçalho */
+
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 30;
+  background: var(--white);
+  border-bottom: 1px solid var(--line);
+  /* sombra sutil, sempre presente: separa o menu fixo do conteúdo que passa
+     por baixo dele sem depender de listener de scroll. */
+  box-shadow: 0 12px 28px -26px rgba(20, 20, 60, 0.75);
+}
+
+.header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  padding-top: 14px;
+  padding-bottom: 14px;
+}
+
+.logo-link { display: block; line-height: 0; }
+
+.logo { height: 68px; width: auto; display: block; }
+
+.main-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.main-nav a {
+  position: relative;
+  display: block;
+  padding: 8px 12px;
+  border-radius: var(--radius-sm);
+  color: var(--ink);
+  font-size: 0.94rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background-color 0.18s ease, color 0.18s ease;
+}
+
+.main-nav a::after {
+  content: "";
+  position: absolute;
+  left: 12px;
+  right: 12px;
+  bottom: 3px;
+  height: 2px;
+  border-radius: 2px;
+  background: var(--green);
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 0.18s ease;
+}
+
+.main-nav a:hover {
+  background: var(--paper);
+  color: var(--navy);
+}
+
+.main-nav a:hover::after { transform: scaleX(1); }
+
+/* --------------------------------------------------------------------- hero */
+
+.hero {
+  position: relative;
+  background-color: var(--navy);
+  background-image: linear-gradient(140deg, #34347d 0%, var(--navy) 46%, var(--navy-deep) 100%);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  color: #e9eaf6;
+  border-bottom: 6px solid var(--green);
+}
+
+/* Fundo full-bleed com as ilustrações geradas. As imagens são quadradas
+   (1024x1024) e a faixa é larga: "cover" + "center" recorta sem distorcer.
+   O gradiente na frente é o que garante contraste do texto branco. */
+.hero-mercado {
+  background-image:
+    linear-gradient(100deg,
+      rgba(17, 17, 46, 0.94) 0%,
+      rgba(20, 20, 56, 0.85) 42%,
+      rgba(19, 33, 56, 0.52) 76%,
+      rgba(18, 42, 54, 0.32) 100%),
+    url("../assets/ai/hero-mercado.webp");
+}
+
+.hero-industria {
+  background-image:
+    linear-gradient(100deg,
+      rgba(15, 15, 42, 0.94) 0%,
+      rgba(18, 18, 52, 0.88) 46%,
+      rgba(17, 30, 52, 0.6) 80%,
+      rgba(16, 38, 50, 0.42) 100%),
+    url("../assets/ai/hero-industria.webp");
+  /* a ilustração original tem um mapa-múndi decorativo colado à direita; com
+     o "cover"/"center" padrão do .hero ele fica visível ao lado da copy
+     sobre atuação só no Ceará. O size/position abaixo aumenta o zoom e ancora
+     à esquerda pra recortar o mapa pra fora do quadro, mantendo fábrica e
+     esteira visíveis. */
+  background-size: 135% auto;
+  background-position: left center;
+}
+
+.hero-inner {
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: 56px;
+  align-items: center;
+  min-height: 600px;
+  padding-top: 104px;
+  padding-bottom: 108px;
+}
+
+.hero-compact .hero-inner {
+  grid-template-columns: minmax(0, 1fr);
+  min-height: 460px;
+  padding-top: 92px;
+  padding-bottom: 96px;
+}
+
+.hero-compact h1 { max-width: 20ch; }
+
+.hero-compact .hero-lead { max-width: 66ch; }
+
+.logo-hero {
+  height: 92px;
+  width: auto;
+  display: block;
+  margin-bottom: 30px;
+}
+
+.hero h1 {
+  color: var(--white);
+  font-size: clamp(2.45rem, 5.4vw, 4.35rem);
+  font-weight: 800;
+  letter-spacing: -0.042em;
+  line-height: 1.02;
+  max-width: 15ch;
+  text-shadow: 0 2px 26px rgba(8, 8, 26, 0.5);
+}
+
+.hero-rule {
+  width: 96px;
+  height: 5px;
+  background: var(--green);
+  border-radius: 3px;
+  margin: 30px 0;
+}
+
+.hero-lead {
+  font-size: 1.18rem;
+  color: #d6d8f0;
+  max-width: 54ch;
+  text-shadow: 0 1px 16px rgba(8, 8, 26, 0.45);
+}
+
+.hero-ctas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-top: 34px;
+}
+
+.hero-panel {
+  /* vidro escuro: a ilustração continua aparecendo atrás, mas o texto do
+     painel fica com contraste garantido em cima da imagem. */
+  background: rgba(13, 13, 36, 0.62);
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  border-radius: var(--radius);
+  padding: 28px 28px 24px;
+  backdrop-filter: blur(6px);
+  box-shadow: 0 30px 60px -40px rgba(0, 0, 0, 0.9);
+}
+
+.hero-panel-title {
+  color: var(--white);
+  font-size: 1.02rem;
+  font-weight: 700;
+  letter-spacing: 0;
+  margin-bottom: 4px;
+}
+
+.hero-panel-note {
+  color: #b8bbe2;
+  font-size: 0.92rem;
+  line-height: 1.5;
+  margin-bottom: 18px;
+}
+
+.hero-panel ul {
+  list-style: none;
+  padding: 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.16);
+}
+
+.hero-panel li {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 11px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.16);
+  color: #e9eaf6;
+  font-size: 0.98rem;
+  font-weight: 600;
+}
+
+.hero-panel li::before {
+  content: "";
+  flex: none;
+  width: 9px;
+  height: 9px;
+  border-radius: 2px;
+  background: var(--green);
+}
+
+/* ------------------------------------------------------------------ botões */
+
+.btn {
+  display: inline-block;
+  padding: 15px 30px;
+  border-radius: var(--radius);
+  font-size: 1.02rem;
+  font-weight: 700;
+  text-decoration: none;
+  transition: background-color 0.18s ease, color 0.18s ease,
+    border-color 0.18s ease, transform 0.18s ease, box-shadow 0.18s ease;
+}
+
+.btn:hover { transform: translateY(-2px); }
+
+.btn-primary {
+  background: var(--green);
+  color: var(--white);
+  border: 2px solid var(--green);
+}
+
+.btn-primary:hover {
+  background: var(--green-deep);
+  border-color: var(--green-deep);
+  box-shadow: 0 16px 30px -18px rgba(21, 122, 69, 0.85);
+}
+
+.btn-secondary {
+  background: transparent;
+  color: var(--white);
+  border: 2px solid rgba(255, 255, 255, 0.5);
+}
+
+.btn-secondary:hover {
+  background: var(--white);
+  color: var(--navy);
+  border-color: var(--white);
+}
+
+.btn-navy {
+  background: var(--navy);
+  color: var(--white);
+  border: 2px solid var(--navy);
+}
+
+.btn-navy:hover {
+  background: var(--navy-deep);
+  border-color: var(--navy-deep);
+  box-shadow: 0 16px 30px -18px rgba(46, 46, 112, 0.85);
+}
+
+.btn-light {
+  background: var(--white);
+  color: var(--navy);
+  border: 2px solid var(--white);
+}
+
+.btn-light:hover {
+  background: transparent;
+  color: var(--white);
+}
+
+.link-more {
+  display: inline-block;
+  color: var(--navy);
+  font-weight: 700;
+  text-decoration: none;
+  border-bottom: 2px solid var(--green);
+  padding-bottom: 2px;
+  transition: color 0.18s ease, transform 0.18s ease;
+}
+
+.link-more:hover {
+  color: var(--green-deep);
+  transform: translateX(3px);
+}
+
+/* ------------------------------------------------------------------ seções */
+
+.section { padding: 84px 0; }
+
+.section-paper { background: var(--paper); }
+
+.section-title {
+  font-size: clamp(1.85rem, 3vw, 2.6rem);
+  font-weight: 800;
+  letter-spacing: -0.035em;
+}
+
+/* filete verde acima dos títulos: marca a seção sem precisar de mais texto */
+.section-title::before,
+.page-head h1::before {
+  content: "";
+  display: block;
+  width: 52px;
+  height: 4px;
+  margin-bottom: 20px;
+  border-radius: 2px;
+  background: var(--green);
+}
+
+.section-head {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 24px 56px;
+  align-items: end;
+  margin-bottom: 44px;
+}
+
+.section-head p {
+  color: var(--muted);
+  font-size: 1.06rem;
+  max-width: 58ch;
+}
+
+.page-head {
+  padding-top: 72px;
+  padding-bottom: 8px;
+}
+
+.page-head h1 {
+  font-size: clamp(2.3rem, 4.8vw, 3.7rem);
+  font-weight: 800;
+  letter-spacing: -0.038em;
+  line-height: 1.04;
+  max-width: 18ch;
+}
+
+.page-head .lead {
+  margin-top: 22px;
+  font-size: 1.16rem;
+  color: var(--muted);
+  max-width: 62ch;
+}
+
+.prose p + p { margin-top: 18px; }
+
+.prose { max-width: 68ch; color: var(--ink); }
+
+.prose strong { color: var(--navy); }
+
+/* ------------------------------------------------------------------- cards */
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 22px;
+}
+
+.cards-2 { grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); }
+
+.cards-4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+
+.cards-5 { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+
+.cards-4 .card { padding: 26px 22px; }
+
+.cards-5 .card { padding: 24px 20px; }
+
+.card {
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 28px;
+  transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
+}
+
+.card:hover {
+  transform: translateY(-3px);
+  border-color: #cdd0e6;
+  box-shadow: 0 22px 44px -30px rgba(30, 33, 64, 0.6);
+}
+
+.section-paper .card { box-shadow: 0 1px 0 rgba(46, 46, 112, 0.04); }
+
+.section-paper .card:hover { box-shadow: 0 22px 44px -30px rgba(30, 33, 64, 0.6); }
+
+.card h3 {
+  font-size: 1.16rem;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.card p {
+  color: var(--muted);
+  font-size: 0.99rem;
+}
+
+.card p + p { margin-top: 12px; }
+
+.card .list-marks { margin-top: 16px; }
+
+.card .btn { margin-top: 22px; }
+
+.icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 46px;
+  height: 46px;
+  margin-bottom: 18px;
+  border-radius: 10px;
+  background: rgba(28, 155, 87, 0.12);
+  color: var(--green-deep);
+}
+
+.icon svg { width: 24px; height: 24px; display: block; }
+
+.icon-navy {
+  background: rgba(46, 46, 112, 0.09);
+  color: var(--navy);
+}
+
+/* ------------------------------------------------------- faixa de números */
+
+.stats {
+  /* faixa de números com a textura gerada: o azul-marinho por cima em
+     translucidez mantém a cor da marca dominante e a trama só sugere relevo. */
+  background-color: var(--navy);
+  background-image:
+    linear-gradient(180deg, rgba(46, 46, 112, 0.72) 0%, rgba(41, 41, 100, 0.66) 100%),
+    url("../assets/ai/textura-secao.webp");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  color: var(--white);
+  padding: 66px 0;
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 20px;
+}
+
+.stat {
+  padding-left: 20px;
+  border-left: 3px solid var(--green);
+}
+
+.stat-num {
+  display: block;
+  color: var(--white);
+  font-size: clamp(2.4rem, 4.2vw, 3.5rem);
+  font-weight: 800;
+  letter-spacing: -0.045em;
+  line-height: 1.02;
+}
+
+.stat-label {
+  display: block;
+  margin-top: 8px;
+  color: #c3c6e8;
+  font-size: 0.97rem;
+  line-height: 1.4;
+}
+
+/* ------------------------------------------------------------------ passos */
+
+.steps {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 26px;
+  counter-reset: passo;
+}
+
+.steps li {
+  counter-increment: passo;
+  padding-top: 22px;
+  border-top: 2px solid var(--navy);
+}
+
+.steps li::before {
+  content: counter(passo);
+  display: block;
+  color: var(--green);
+  font-size: 1.5rem;
+  font-weight: 800;
+  line-height: 1;
+  margin-bottom: 14px;
+}
+
+.steps h3 {
+  font-size: 1.12rem;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.steps p {
+  color: var(--muted);
+  font-size: 0.99rem;
+}
+
+/* ------------------------------------------------------- listas com marca */
+
+.list-marks {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  gap: 12px;
+}
+
+.list-marks li {
+  position: relative;
+  padding-left: 30px;
+  color: var(--ink);
+}
+
+.list-marks li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 9px;
+  width: 12px;
+  height: 12px;
+  border-radius: 3px;
+  background: var(--green);
+}
+
+.list-marks strong { color: var(--navy); }
+
+.panel {
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  border-left: 5px solid var(--navy);
+  padding: 30px;
+}
+
+.panel-after { margin-top: 26px; }
+
+.panel h3 {
+  font-size: 1.16rem;
+  font-weight: 700;
+  margin-bottom: 16px;
+}
+
+/* ------------------------------------------------- mapa da área de atuação */
+
+.mapa-bloco {
+  display: grid;
+  grid-template-columns: minmax(0, 300px) minmax(0, 430px);
+  justify-content: center;
+  gap: 56px;
+  align-items: center;
+  margin-bottom: 44px;
+  padding: 40px 36px;
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+}
+
+.mapa-figura {
+  margin: 0;
+  text-align: center;
+}
+
+.mapa-ceara {
+  display: block;
+  width: 100%;
+  max-width: 300px;
+  height: auto;
+  margin: 0 auto;
+  /* o SVG já vem em azul-marinho com contorno verde: só o realce de relevo */
+  filter: drop-shadow(0 16px 26px rgba(46, 46, 112, 0.22));
+}
+
+.mapa-figura figcaption {
+  margin-top: 18px;
+  color: var(--navy);
+  font-size: 0.98rem;
+  font-weight: 700;
+}
+
+.mapa-credito {
+  display: block;
+  margin-top: 6px;
+  color: var(--muted);
+  font-size: 0.78rem;
+  font-weight: 400;
+  line-height: 1.4;
+}
+
+.mapa-destaque {
+  color: var(--navy);
+  font-size: clamp(1.35rem, 2.2vw, 1.8rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1.15;
+  margin-bottom: 14px;
+}
+
+.mapa-texto p:not(.mapa-destaque) {
+  color: var(--muted);
+  font-size: 1.04rem;
+  max-width: 46ch;
+}
+
+/* ------------------------------------------------------- faixa das marcas */
+
+.logos {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.logo-tile {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 112px;
+  padding: 18px;
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
+}
+
+.logo-tile:hover {
+  transform: translateY(-3px);
+  border-color: #cdd0e6;
+  box-shadow: 0 20px 38px -30px rgba(30, 33, 64, 0.6);
+}
+
+.logo-tile img {
+  max-height: 52px;
+  max-width: 100%;
+  width: auto;
+  object-fit: contain;
+}
+
+.logos-foot { margin-top: 30px; }
+
+/* --------------------------------------------------- grid de marcas (8) */
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 22px;
+}
+
+.grid .card {
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  overflow: hidden;
+}
+
+.grid .card img {
+  display: block;
+  width: auto;
+  max-width: 78%;
+  max-height: 58px;
+  margin: 0 auto;
+  object-fit: contain;
+}
+
+.card-plate {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 118px;
+  padding: 20px;
+  background: var(--paper);
+  border-bottom: 1px solid var(--line);
+}
+
+.card-body { padding: 22px 24px 26px; }
+
+.card-body h3 { margin-bottom: 10px; }
+
+.card-body .tag {
+  display: inline-block;
+  margin: 0 0 12px;
+  padding: 4px 11px;
+  border-radius: 999px;
+  background: rgba(28, 155, 87, 0.12);
+  color: var(--green-deep);
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+
+.card-body .tag + p { margin-top: 0; }
+
+/* --------------------------------------------------------- faixa de ação */
+
+.cta {
+  /* mesma textura da faixa de números, com o verde quase opaco por cima:
+     o efeito é só uma trama diagonal de baixo contraste. */
+  background-color: var(--green);
+  background-image:
+    linear-gradient(115deg, rgba(28, 155, 87, 0.93) 0%, rgba(23, 133, 76, 0.93) 100%),
+    url("../assets/ai/textura-secao.webp");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  color: var(--white);
+}
+
+.cta-inner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 28px;
+  padding-top: 64px;
+  padding-bottom: 64px;
+}
+
+.cta h2 {
+  color: var(--white);
+  font-size: clamp(1.7rem, 2.9vw, 2.4rem);
+  font-weight: 800;
+  letter-spacing: -0.035em;
+  max-width: 20ch;
+}
+
+.cta p {
+  margin-top: 12px;
+  color: #e2f5ea;
+  max-width: 52ch;
+}
+
+.cta-text { min-width: 0; }
+
+/* ------------------------------------------------------------------ rodapé */
+
+.site-footer {
+  background: var(--navy-deep);
+  color: #c3c6e8;
+  font-size: 0.96rem;
+}
+
+.footer-top {
+  display: grid;
+  grid-template-columns: 1.6fr 1fr 1fr;
+  gap: 40px;
+  padding-top: 56px;
+  padding-bottom: 40px;
+}
+
+.logo-footer {
+  height: 54px;
+  width: auto;
+  display: block;
+  margin-bottom: 20px;
+}
+
+.footer-brand p { max-width: 44ch; line-height: 1.6; }
+
+.footer-title {
+  color: var(--white);
+  font-size: 1rem;
+  font-weight: 700;
+  margin-bottom: 14px;
+}
+
+.footer-list {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  gap: 10px;
+}
+
+.site-footer a {
+  color: #c3c6e8;
+  text-decoration: none;
+}
+
+.site-footer a:hover {
+  color: var(--white);
+  text-decoration: underline;
+}
+
+.footer-bottom {
+  border-top: 1px solid rgba(255, 255, 255, 0.14);
+  padding-top: 22px;
+  padding-bottom: 30px;
+  font-size: 0.9rem;
+}
+
+/* ------------------------------------------------------------- responsivo */
+
+@media (max-width: 980px) {
+  .hero-inner,
+  .hero-compact .hero-inner {
+    grid-template-columns: 1fr;
+    gap: 36px;
+    min-height: 0;
+    padding-top: 68px;
+    padding-bottom: 72px;
+  }
+
+  .hero h1 { max-width: 18ch; }
+
+  .mapa-bloco {
+    grid-template-columns: minmax(0, 1fr);
+    justify-content: stretch;
+    gap: 30px;
+    padding: 32px 28px;
+  }
+
+  .mapa-texto p:not(.mapa-destaque) { max-width: none; }
+
+  .section-head {
+    grid-template-columns: 1fr;
+    align-items: start;
+    gap: 16px;
+  }
+
+  .stats-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+
+  .cards-4,
+  .cards-5 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+
+  .grid,
+  .logos { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+
+  .footer-top {
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+  }
+
+  .footer-brand { grid-column: 1 / -1; }
+}
+
+@media (max-width: 720px) {
+  body { font-size: 16px; }
+
+  /* só o recuo lateral: usar o atalho aqui zeraria o padding vertical
+     das seções que também são .container (hero, rodapé, faixa verde). */
+  .container {
+    padding-left: 18px;
+    padding-right: 18px;
+  }
+
+  /* o menu segue fixo no mobile: cabeçalho enxuto pra não comer a tela */
+  .header-inner {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+    padding-top: 10px;
+    padding-bottom: 8px;
+  }
+
+  .logo { height: 50px; }
+
+  .main-nav { gap: 2px; }
+
+  .main-nav a {
+    padding: 5px 9px;
+    font-size: 0.86rem;
+  }
+
+  .main-nav a::after {
+    left: 9px;
+    right: 9px;
+    bottom: 1px;
+  }
+
+  .section { padding: 58px 0; }
+
+  .page-head { padding-top: 48px; }
+
+  .logo-hero { height: 66px; margin-bottom: 24px; }
+
+  .hero-inner,
+  .hero-compact .hero-inner {
+    padding-top: 54px;
+    padding-bottom: 58px;
+  }
+
+  .hero h1 {
+    letter-spacing: -0.032em;
+    max-width: 14ch;
+  }
+
+  .section-title::before,
+  .page-head h1::before {
+    width: 44px;
+    height: 3px;
+    margin-bottom: 16px;
+  }
+
+  .mapa-bloco { padding: 24px 20px; }
+
+  .mapa-ceara { max-width: 260px; }
+
+  .hero-panel { padding: 22px 20px 18px; }
+
+  .hero-ctas .btn {
+    flex: 1 1 100%;
+    text-align: center;
+  }
+
+  .cards,
+  .cards-2,
+  .cards-4,
+  .cards-5,
+  .grid,
+  .steps { grid-template-columns: 1fr; }
+
+  .card-plate { height: 96px; }
+
+  .card { padding: 24px; }
+
+  .panel { padding: 24px 22px; }
+
+  .stats { padding: 48px 0; }
+
+  .stats-grid { gap: 26px 16px; }
+
+  .cta-inner {
+    padding-top: 48px;
+    padding-bottom: 48px;
+  }
+
+  .cta .btn { display: block; text-align: center; }
+
+  .footer-top {
+    grid-template-columns: 1fr;
+    gap: 28px;
+    padding-top: 44px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; }
+}
