@@ -1,15 +1,15 @@
 /* ==========================================================================
    2D Representações — folha de estilo única do site institucional
-   Identidade: fundo branco, azul-marinho #2e2e70, verde #1c9b57,
+   Identidade: fundo branco, azul-marinho #353375, verde #008349,
    tipografia de sistema, bordas de 12px. Sem JavaScript.
    ========================================================================== */
 
 :root {
-  --navy: #2e2e70;
+  --navy: #353375;
   --navy-deep: #23234f;
   --navy-soft: #4a4a93;
-  --green: #1c9b57;
-  --green-deep: #157a45;
+  --green: #008349;
+  --green-deep: #00693A;
   --ink: #1e2140;
   --muted: #5c6180;
   --line: #e3e4ee;
@@ -131,7 +131,7 @@ button:focus-visible {
 .hero {
   position: relative;
   background-color: var(--navy);
-  background-image: linear-gradient(140deg, #34347d 0%, var(--navy) 46%, var(--navy-deep) 100%);
+  background-image: linear-gradient(140deg, #3E3C86 0%, var(--navy) 46%, var(--navy-deep) 100%);
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -141,72 +141,58 @@ button:focus-visible {
 
 /* Fundo full-bleed com as ilustrações geradas. As imagens são quadradas
    (1024x1024) e a faixa é larga: "cover" + "center" recorta sem distorcer.
-   O gradiente na frente é o que garante contraste do texto branco. */
-.hero-mercado {
-  /* Só o gradiente fica no elemento; a ilustração vai para a camada
-     ::before, que é o que se move. Sem isso, animar o background moveria
-     o gradiente junto e o texto perderia contraste no meio do caminho. */
-  background-image:
-    linear-gradient(100deg,
-      rgba(17, 17, 46, 0.94) 0%,
-      rgba(20, 20, 56, 0.85) 42%,
-      rgba(19, 33, 56, 0.52) 76%,
-      rgba(18, 42, 54, 0.32) 100%);
+
+   Todo hero com foto usa .hero-foto. A ilustração vai numa camada própria
+   (::before), que é o que se move; o gradiente de contraste fica entre ela e o
+   texto (::after). Animar o background do próprio elemento moveria o gradiente
+   junto e o texto perderia contraste no meio do caminho.
+
+   Cada página só declara as variáveis: a imagem, o enquadramento e o véu. */
+.hero-foto {
   overflow: hidden;
   isolation: isolate;
 }
 
-/* Camada da ilustração, atrás do gradiente e do conteúdo.
-   Movimento lento e contínuo (deriva + zoom quase imperceptível): dá vida
-   sem competir com a leitura. 38s é longo de propósito — animação curta
-   em fundo institucional cansa e chama atenção para si. */
-.hero-mercado::before {
+.hero-foto::before {
   content: "";
   position: absolute;
   inset: -6%;                 /* folga para o movimento não descobrir a borda */
   z-index: -2;
-  background-image: url("../assets/ai/hero-mercado.webp");
-  background-size: cover;
-  background-position: center;
+  background-image: var(--hero-img);
+  background-size: var(--hero-size, cover);
+  background-position: var(--hero-pos, center);
   background-repeat: no-repeat;
-  transform-origin: 58% 45%;
-  animation: hero-deriva 24s ease-in-out infinite alternate;
+  transform-origin: var(--hero-origem, 58% 45%);
+  /* Movimento lento e contínuo (deriva + zoom quase imperceptível): dá vida
+     sem competir com a leitura. Longo de propósito — animação curta em fundo
+     institucional cansa e chama atenção para si. */
+  animation: hero-deriva var(--hero-tempo, 24s) ease-in-out infinite alternate;
   will-change: transform;
 }
 
-/* Segunda camada de movimento: uma faixa de luz suave atravessa o hero.
-   É ela que torna o movimento perceptível de imediato — a deriva sozinha
-   é lenta demais para se notar em poucos segundos. */
-.hero-mercado .hero-inner { position: relative; z-index: 1; }
-
-.hero-mercado::marker { content: ""; }
-
-/* O gradiente precisa ficar entre a ilustração e o texto. */
-.hero-mercado::after {
+/* O véu de contraste precisa ficar entre a ilustração e o texto. */
+.hero-foto::after {
   content: "";
   position: absolute;
   inset: 0;
   z-index: -1;
-  background: linear-gradient(100deg,
-    rgba(17, 17, 46, 0.94) 0%,
-    rgba(20, 20, 56, 0.85) 42%,
-    rgba(19, 33, 56, 0.52) 76%,
-    rgba(18, 42, 54, 0.32) 100%);
+  background: var(--hero-veu);
 }
+
+.hero-foto .hero-inner { position: relative; z-index: 1; }
 
 @keyframes hero-deriva {
   from { transform: scale(1.04) translate3d(2.2%, 1.4%, 0); }
   to   { transform: scale(1.24) translate3d(-2.8%, -2.0%, 0); }
 }
 
-/* Faixa de luz que cruza o hero devagar. Fica acima da ilustração e
-   abaixo do gradiente de contraste, então nunca prejudica a leitura. */
-.hero-mercado .hero-luz {
+/* Segunda camada de movimento: uma faixa de luz suave atravessa o hero.
+   É ela que torna o movimento perceptível de imediato — a deriva sozinha
+   é lenta demais para se notar em poucos segundos. Fica acima da ilustração e
+   abaixo do véu de contraste, então nunca prejudica a leitura. */
+.hero-luz {
   position: absolute;
   inset: -20% -35%;
-  /* Acima do gradiente de contraste (z-index -1), abaixo do conteúdo (1).
-     Sob o gradiente ela ficava abafada justamente do lado esquerdo, que é
-     o mais opaco — e é onde o olho está lendo. */
   z-index: 0;
   pointer-events: none;
   background: linear-gradient(72deg,
@@ -215,7 +201,7 @@ button:focus-visible {
     rgba(190, 230, 255, 0.16) 50%,
     rgba(120, 190, 255, 0.10) 53%,
     rgba(255, 255, 255, 0) 62%);
-  animation: hero-luz 17s linear infinite;
+  animation: hero-luz var(--luz-tempo, 17s) linear infinite;
   will-change: transform;
 }
 
@@ -224,22 +210,81 @@ button:focus-visible {
   to   { transform: translate3d(38%, 0, 0); }
 }
 
+/* --- o enquadramento de cada página ------------------------------------- */
+
+/* Para indústrias: fábrica e esteira. A ilustração tem um mapa-múndi colado à
+   direita, dos 72% da largura em diante — e a 2D atua só no Ceará. O zoom de
+   160% ancorado à esquerda deixa esse trecho fora do quadro, e a origem do
+   movimento em 0% garante que o zoom da animação afaste a direita em vez de
+   revelá-la. Mexer nestes três valores traz o mapa de volta. */
 .hero-industria {
-  background-image:
-    linear-gradient(100deg,
-      rgba(15, 15, 42, 0.94) 0%,
-      rgba(18, 18, 52, 0.88) 46%,
-      rgba(17, 30, 52, 0.6) 80%,
-      rgba(16, 38, 50, 0.42) 100%),
-    url("../assets/ai/hero-industria.webp");
-  /* a ilustração original tem um mapa-múndi decorativo colado à direita; com
-     o "cover"/"center" padrão do .hero ele fica visível ao lado da copy
-     sobre atuação só no Ceará. O size/position abaixo aumenta o zoom e ancora
-     à esquerda pra recortar o mapa pra fora do quadro, mantendo fábrica e
-     esteira visíveis. */
-  background-size: 135% auto;
-  background-position: left center;
+  --hero-img: url("../assets/ai/hero-industria.webp");
+  --hero-size: 160% auto;
+  --hero-pos: left center;
+  --hero-origem: 0% 50%;
+  --hero-tempo: 30s;
+  --hero-veu: linear-gradient(100deg,
+    rgba(15, 15, 42, 0.94) 0%,
+    rgba(18, 18, 52, 0.88) 46%,
+    rgba(17, 30, 52, 0.6) 80%,
+    rgba(16, 38, 50, 0.42) 100%);
 }
+
+/* Sobre: mesma ilustração do mercado, enquadrada pelo outro lado e com véu
+   mais fechado — a página é de texto longo e o fundo tem de recuar. */
+.hero-sobre {
+  --hero-img: url("../assets/ai/hero-mercado.webp");
+  --hero-size: 128% auto;
+  --hero-pos: right center;
+  --hero-origem: 70% 55%;
+  --hero-tempo: 34s;
+  --luz-tempo: 21s;
+  --hero-veu: linear-gradient(96deg,
+    rgba(16, 16, 44, 0.95) 0%,
+    rgba(19, 19, 54, 0.9) 48%,
+    rgba(18, 32, 54, 0.66) 82%,
+    rgba(17, 40, 52, 0.5) 100%);
+}
+
+/* Marcas: a página fala das marcas que as indústrias põem na gôndola, então
+   usa a mesma gôndola da home, com outro corte e outro ritmo para não repetir
+   a tela. Evita de quebra o mapa-múndi da ilustração de indústria. */
+.hero-marcas {
+  --hero-img: url("../assets/ai/hero-prateleira.svg");
+  --hero-size: 140% auto;
+  --hero-pos: right 40%;
+  --hero-origem: 78% 45%;
+  --hero-tempo: 40s;
+  --luz-tempo: 23s;
+  --hero-veu:
+    linear-gradient(96deg,
+      rgba(11, 11, 30, 0.95) 0%,
+      rgba(13, 13, 36, 0.88) 36%,
+      rgba(15, 16, 42, 0.50) 60%,
+      rgba(16, 19, 46, 0.16) 80%,
+      rgba(16, 19, 46, 0.06) 100%),
+    linear-gradient(180deg,
+      rgba(11, 11, 30, 0.38) 0%,
+      rgba(12, 12, 32, 0.12) 44%,
+      rgba(11, 11, 30, 0.36) 100%);
+}
+
+/* Contato: a trama da textura, não uma cena. Página curta e utilitária, o
+   fundo aqui é só respiro. */
+.hero-contato {
+  --hero-img: url("../assets/ai/textura-secao.webp");
+  --hero-size: 118% auto;
+  --hero-pos: center;
+  --hero-origem: 50% 50%;
+  --hero-tempo: 38s;
+  --luz-tempo: 24s;
+  --hero-veu: linear-gradient(100deg,
+    rgba(17, 17, 46, 0.93) 0%,
+    rgba(21, 21, 58, 0.88) 45%,
+    rgba(20, 34, 58, 0.72) 80%,
+    rgba(18, 42, 54, 0.6) 100%);
+}
+
 
 .hero-inner {
   display: grid;
@@ -257,10 +302,6 @@ button:focus-visible {
   padding-top: 92px;
   padding-bottom: 96px;
 }
-
-.hero-compact h1 { max-width: 20ch; }
-
-.hero-compact .hero-lead { max-width: 66ch; }
 
 .logo-hero {
   height: 92px;
@@ -293,6 +334,18 @@ button:focus-visible {
   max-width: 54ch;
   text-shadow: 0 1px 16px rgba(8, 8, 26, 0.45);
 }
+
+/* Páginas internas: mesmo hero, um degrau abaixo da home. Estas regras vêm
+   depois das genéricas de propósito — com a mesma especificidade, quem vem
+   por último vence, e antes o max-width de 20ch era anulado. */
+.hero-compact h1 {
+  font-size: clamp(2.15rem, 4.3vw, 3.45rem);
+  max-width: 20ch;
+}
+
+.hero-compact .hero-rule { margin: 26px 0; }
+
+.hero-compact .hero-lead { max-width: 66ch; }
 
 .hero-ctas {
   display: flex;
@@ -401,7 +454,7 @@ button:focus-visible {
 .btn-navy:hover {
   background: var(--navy-deep);
   border-color: var(--navy-deep);
-  box-shadow: 0 16px 30px -18px rgba(46, 46, 112, 0.85);
+  box-shadow: 0 16px 30px -18px rgba(53, 51, 117, 0.85);
 }
 
 .btn-light {
@@ -526,7 +579,7 @@ button:focus-visible {
   box-shadow: 0 22px 44px -30px rgba(30, 33, 64, 0.6);
 }
 
-.section-paper .card { box-shadow: 0 1px 0 rgba(46, 46, 112, 0.04); }
+.section-paper .card { box-shadow: 0 1px 0 rgba(53, 51, 117, 0.04); }
 
 .section-paper .card:hover { box-shadow: 0 22px 44px -30px rgba(30, 33, 64, 0.6); }
 
@@ -555,14 +608,14 @@ button:focus-visible {
   height: 46px;
   margin-bottom: 18px;
   border-radius: 10px;
-  background: rgba(28, 155, 87, 0.12);
+  background: rgba(0, 131, 73, 0.12);
   color: var(--green-deep);
 }
 
 .icon svg { width: 24px; height: 24px; display: block; }
 
 .icon-navy {
-  background: rgba(46, 46, 112, 0.09);
+  background: rgba(53, 51, 117, 0.09);
   color: var(--navy);
 }
 
@@ -573,7 +626,7 @@ button:focus-visible {
      translucidez mantém a cor da marca dominante e a trama só sugere relevo. */
   background-color: var(--navy);
   background-image:
-    linear-gradient(180deg, rgba(46, 46, 112, 0.72) 0%, rgba(41, 41, 100, 0.66) 100%),
+    linear-gradient(180deg, rgba(53, 51, 117, 0.72) 0%, rgba(41, 40, 95, 0.66) 100%),
     url("../assets/ai/textura-secao.webp");
   background-size: cover;
   background-position: center;
@@ -719,7 +772,7 @@ button:focus-visible {
   height: auto;
   margin: 0 auto;
   /* o SVG já vem em azul-marinho com contorno verde: só o realce de relevo */
-  filter: drop-shadow(0 16px 26px rgba(46, 46, 112, 0.22));
+  filter: drop-shadow(0 16px 26px rgba(53, 51, 117, 0.22));
 }
 
 .mapa-figura figcaption {
@@ -861,7 +914,7 @@ button:focus-visible {
   margin: 0 0 12px;
   padding: 4px 11px;
   border-radius: 999px;
-  background: rgba(28, 155, 87, 0.12);
+  background: rgba(0, 131, 73, 0.12);
   color: var(--green-deep);
   font-size: 0.8rem;
   font-weight: 700;
@@ -884,7 +937,7 @@ button:focus-visible {
      o efeito é só uma trama diagonal de baixo contraste. */
   background-color: var(--green);
   background-image:
-    linear-gradient(115deg, rgba(28, 155, 87, 0.93) 0%, rgba(23, 133, 76, 0.93) 100%),
+    linear-gradient(115deg, rgba(0, 131, 73, 0.93) 0%, rgba(0, 105, 58, 0.93) 100%),
     url("../assets/ai/textura-secao.webp");
   background-size: cover;
   background-position: center;
@@ -1133,6 +1186,6 @@ button:focus-visible {
 @media (prefers-reduced-motion: reduce) {
   * { transition: none !important; }
   /* Quem configurou o sistema para menos movimento vê o hero parado. */
-  .hero-mercado::before { animation: none; transform: scale(1.06); }
-  .hero-mercado .hero-luz { animation: none; opacity: 0; }
+  .hero-foto::before { animation: none; transform: scale(1.06); }
+  .hero-luz { animation: none; opacity: 0; }
 }
