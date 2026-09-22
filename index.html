@@ -1,51 +1,4 @@
-<!doctype html>
-<html lang="pt-BR">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>2D Representações | Representação Comercial no Ceará</title>
-  <meta name="description" content="A 2D Representações leva marcas e indústrias até supermercados, atacadistas, distribuidores, atacarejo e farmácias do Ceará, com equipe própria em campo.">
-  <link rel="icon" type="image/png" href="assets/logo/favicon.png">
-  <!-- Marca de uma linha, sem defer, antes do CSS de propósito: prova que o
-       JavaScript rodou ANTES da primeira pintura, para o .rv/.mapa/.rulebar
-       poderem nascer visíveis e só passar a "poder esconder" depois disso
-       (rodada de correção 1, achado 2). Se ficasse dentro do site.js
-       (deferido), a marca chegaria depois da primeira pintura e o conteúdo
-       acima da dobra piscaria — aparece, some, reaparece.
-
-       O listener de "error" ao lado é a mesma ideia levada um passo adiante
-       (rodada de correção 2): o try/catch dentro de site.js protege contra
-       um bug real ali dentro (ex.: um querySelector sem guarda que a Task 6
-       introduza em revelar()), mas só existe DENTRO do arquivo — se o
-       site.js inteiro vier substituído, truncado ou apontando para outra
-       coisa, o try/catch nunca chega a rodar. Este listener não depende do
-       conteúdo do arquivo: pega qualquer exceção não tratada na página,
-       venha de onde vier, e desfaz a marca. Falhar aberto, nunca fechado. -->
-  <script>
-    document.documentElement.className += ' js-ok';
-    window.addEventListener('error', function () {
-      document.documentElement.classList.remove('js-ok');
-    });
-  </script>
-  <link rel="stylesheet" href="css/styles.css">
-</head>
-<body>
-  <header class="site-header">
-    <div class="container header-inner">
-      <a href="index.html" class="logo-link">
-        <img src="assets/logo/logo-color.png" alt="2D Representações" class="logo">
-      </a>
-      <nav class="main-nav" aria-label="Navegação principal">
-        <a href="index.html">Início</a>
-        <a href="sobre.html">Sobre</a>
-        <a href="marcas.html">Marcas Representadas</a>
-        <a href="industrias.html">Para Indústrias</a>
-        <a href="contato.html">Contato</a>
-      </nav>
-    </div>
-  </header>
-
-  <section class="hero">
+<!DOCTYPE html><html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>2D Representações | Representação Comercial no Ceará</title><meta name="description" content="A 2D Representações leva marcas e indústrias até supermercados, atacadistas, distribuidores, atacarejo e farmácias do Ceará, com equipe própria em campo."><meta name="theme-color" content="#353375"><link rel="canonical" href="https://2drep.com.br/"><meta property="og:title" content="2D Representações | Representação Comercial no Ceará"><meta property="og:description" content="A 2D Representações leva marcas e indústrias até supermercados, atacadistas, distribuidores, atacarejo e farmácias do Ceará, com equipe própria em campo."><meta property="og:type" content="website"><link rel="icon" href="/assets/logo/logo-color.png"><meta name="astro-view-transitions-enabled" content="true"><meta name="astro-view-transitions-fallback" content="animate"><script type="module" src="/_astro/ClientRouter.astro_astro_type_script_index_0_lang.CYDbzu1r.js"></script><link rel="stylesheet" href="/_astro/Base.IXpnwn-q.css"></head><body><a class="skip-link" href="#conteudo">Pular para o conteúdo</a><header class="site-header"><div class="container header-inner"><a class="logo-link" href="/index.html" aria-label="2D Representações — início"><img class="logo" src="/assets/logo/logo-color.png" alt="2D Representações" width="184" height="68"></a><button class="menu-toggle" aria-controls="navegacao" aria-expanded="false" hidden>Menu <span aria-hidden="true">☰</span></button><nav class="main-nav" id="navegacao" aria-label="Navegação principal"><a href="/industrias.html">Indústrias</a><a href="/marcas.html">Marcas</a><a href="/campo.html">Campo</a><a href="/sobre.html">Sobre</a><a href="/equipe.html">Equipe</a><a href="/contato.html">Contato</a></nav><div class="header-redes"><div class="redes" aria-label="Redes sociais da 2D"><a href="https://instagram.com/2drepres" aria-label="Instagram" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".8"/></svg></a><a href="https://www.linkedin.com/company/2drepres/" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M7 10v7m0-10v.1M11 17v-7m0 3c0-4 6-4 6 0v4"/></svg></a><a href="https://www.facebook.com/profile.php?id=61594131366941" aria-label="Facebook" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M15 21v-8h3l.5-4H15V7c0-1 .5-2 2-2h2V2h-3c-3 0-5 2-5 5v2H8v4h3v8"/></svg></a></div></div></div></header><main id="conteudo" tabindex="-1"><section class="hero">
     <div class="container hero-inner">
       <div>
         <p class="mono on-dark">Representação comercial · Ceará</p>
@@ -60,7 +13,7 @@
         <div class="big"><span id="cnt" data-alvo="8">8</span><em>/10</em></div>
         <p class="lbl">das maiores redes do Ceará já são clientes da 2D</p>
         <div class="rulebar"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
-        <p class="fonte">As <b>7 maiores do estado</b> são todas — e as dez maiores somam <b>quase 90% do faturamento</b> do ranking. Fonte: ranking ABRAS 2026 cruzado com a nossa base.</p>
+        <p class="fonte">As <b>7 maiores do estado</b> são todas — e as redes atendidas pela 2D somam <b>quase 90% do faturamento</b> das dez maiores. Fonte: ranking ABRAS 2026 cruzado com a nossa base.</p>
       </div>
     </div>
   </section>
@@ -69,12 +22,14 @@
     <div class="container">
       <div class="faixa-g">
         <div class="faixa-i rv"><b>5</b><span>canais atendidos: varejo, atacado, distribuição, atacarejo e farmácia</span></div>
-        <div class="faixa-i rv d1"><b>16</b><span>marcas de consumo na gôndola, de cinco indústrias representadas</span></div>
+        <div class="faixa-i rv d1"><b>Portfólio</b><span>marcas de alimentos e bebidas presentes na gôndola</span></div>
         <div class="faixa-i rv d2"><b>2008</b><span>operação contínua no estado desde então</span></div>
         <div class="faixa-i rv d3"><b>11</b><span>pessoas entre venda, promoção, merchandising e retaguarda</span></div>
       </div>
     </div>
   </section>
+
+  
 
   <section class="sec">
     <div class="container">
@@ -205,11 +160,11 @@
         <p class="rv d2">Indústrias de segmentos que não se parecem, atendidas pela mesma equipe.</p>
       </div>
       <div class="logos">
-        <div class="tile rv" style="--h:54px"><img src="assets/empresas/jbs.svg" alt="JBS"></div>
-        <div class="tile rv" style="--h:38px"><img src="assets/empresas/josapar.png" alt="Josapar"></div>
-        <div class="tile rv" style="--h:40px"><img src="assets/empresas/miolo.webp" alt="Miolo"></div>
-        <div class="tile rv" style="--h:38px"><img src="assets/empresas/norsal.png" alt="Norsal"></div>
-        <div class="tile rv" style="--h:58px"><img src="assets/empresas/nutrimais.png" alt="Nutrimais"></div>
+        <div class="tile rv" style="--h:54px"><img src="/assets/empresas/jbs.svg" alt="JBS"></div>
+        <div class="tile rv" style="--h:38px"><img src="/assets/empresas/josapar.png" alt="Josapar"></div>
+        <div class="tile rv" style="--h:40px"><img src="/assets/empresas/miolo.webp" alt="Miolo"></div>
+        <div class="tile rv" style="--h:38px"><img src="/assets/empresas/norsal.png" alt="Norsal"></div>
+        <div class="tile rv" style="--h:58px"><img src="/assets/empresas/nutrimais.png" alt="Nutrimais"></div>
       </div>
       <p class="logos-nota rv">Cada logo exatamente como a marca nos entregou — <b>sem recolorir, recortar ou redesenhar</b>.</p>
     </div>
@@ -227,45 +182,4 @@
         Chamar no WhatsApp
       </a>
     </div>
-  </section>
-
-  <footer class="site-footer">
-    <div class="container footer-top">
-      <div class="footer-brand">
-        <img src="assets/logo/logo-white.png" alt="2D Representações" class="logo-footer">
-        <p>Representação comercial no Ceará. Levamos marcas e indústrias até supermercados, atacadistas, distribuidores, atacarejo e farmácias, com equipe própria em campo.</p>
-      </div>
-      <div class="footer-col">
-        <p class="footer-title">Navegação</p>
-        <ul class="footer-list">
-          <li><a href="index.html">Início</a></li>
-          <li><a href="sobre.html">Sobre</a></li>
-          <li><a href="marcas.html">Marcas Representadas</a></li>
-          <li><a href="industrias.html">Para Indústrias</a></li>
-          <li><a href="contato.html">Contato</a></li>
-        </ul>
-      </div>
-      <div class="footer-col">
-        <p class="footer-title">Contato</p>
-        <ul class="footer-list">
-          <li><a href="mailto:contato@2drep.com.br">contato@2drep.com.br</a></li>
-          <li>WhatsApp: <a href="https://wa.me/5585981801200">(85) 98180-1200</a></li>
-          <li><a href="https://instagram.com/2drepres">Instagram: @2drepres</a></li>
-          <li><a href="https://www.linkedin.com/company/2drepres/">LinkedIn: /2drepres</a></li>
-          <li><a href="https://www.facebook.com/profile.php?id=61594131366941">Facebook</a></li>
-        </ul>
-      </div>
-    </div>
-    <div class="container footer-bottom">
-      <p>&copy; 2026 2D Representações Ltda. Representação comercial no Ceará.</p>
-    </div>
-  </footer>
-
-  <!-- A marca do <head> só prova que o navegador roda script — não que este
-       arquivo carregou. Se a requisição falhar (404, proxy, ad-blocker), o
-       "error" do próprio <script> desfaz a marca: sem ela, .rv/.mapa/
-       .rulebar/.gondola voltam ao estado visível de base (achado 2, rodada
-       de correção 1). Continua sendo desfazer a marca, não lógica nova. -->
-  <script src="js/site.js" defer onerror="document.documentElement.classList.remove('js-ok')"></script>
-</body>
-</html>
+  </section></main><footer class="site-footer"><div class="container footer-top"><div class="footer-brand"><a href="/index.html"><img src="/assets/logo/logo-white.png" alt="2D Representações" class="logo-footer" width="190" height="70" loading="lazy"></a><p>Representação comercial no Ceará. Equipe própria, relacionamento com o varejo e acompanhamento dentro da loja.</p><div class="redes" aria-label="Redes sociais da 2D"><a href="https://instagram.com/2drepres" aria-label="Instagram" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".8"/></svg></a><a href="https://www.linkedin.com/company/2drepres/" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M7 10v7m0-10v.1M11 17v-7m0 3c0-4 6-4 6 0v4"/></svg></a><a href="https://www.facebook.com/profile.php?id=61594131366941" aria-label="Facebook" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M15 21v-8h3l.5-4H15V7c0-1 .5-2 2-2h2V2h-3c-3 0-5 2-5 5v2H8v4h3v8"/></svg></a></div></div><div class="footer-col"><p class="footer-title">Conheça a 2D</p><ul class="footer-list"><li><a href="/industrias.html">Indústrias</a></li><li><a href="/marcas.html">Marcas</a></li><li><a href="/campo.html">Campo</a></li><li><a href="/sobre.html">Sobre</a></li><li><a href="/equipe.html">Equipe</a></li><li><a href="/contato.html">Contato</a></li></ul></div><div class="footer-col"><p class="footer-title">Vamos conversar</p><ul class="footer-list"><li><a href="https://wa.me/5585981801200">(85) 98180-1200</a></li><li><a href="mailto:contato@2drep.com.br">contato@2drep.com.br</a></li><li>Rua Santa Cecília, 84<br>Eusébio · CE</li><li>Segunda a sexta · 08h às 18h</li></ul></div></div><div class="container footer-bottom"><p>© 2026 2D Representações Ltda.</p><p>No Ceará desde 2008.</p></div></footer><dialog id="foto-ampliada" class="foto-dialog" aria-label="Foto de campo ampliada"><form method="dialog"><button>Fechar ×</button></form><figure><img alt=""><figcaption></figcaption></figure></dialog><script type="module">var e;function t(){e?.abort(),e=new AbortController;let{signal:t}=e,n=document.querySelector(`.menu-toggle`),r=document.querySelector(`#navegacao`);if(n&&r){n.hidden=!1,document.documentElement.classList.add(`menu-pronto`);let e=()=>{n.setAttribute(`aria-expanded`,`false`),r.classList.remove(`aberto`)};n.addEventListener(`click`,()=>{let e=n.getAttribute(`aria-expanded`)!==`true`;n.setAttribute(`aria-expanded`,String(e)),r.classList.toggle(`aberto`,e)},{signal:t}),document.addEventListener(`keydown`,t=>{t.key===`Escape`&&(e(),n.focus())},{signal:t}),r.addEventListener(`click`,e,{signal:t})}let i=document.querySelector(`[data-filtros]`);if(i){i.hidden=!1;let e=i.querySelector(`[name=praca]`),n=i.querySelector(`[name=marca]`),r=i.querySelector(`[role=status]`),a=[...document.querySelectorAll(`[data-peca]`)],o=(t=!0)=>{let i=0;for(let t of a){let r=JSON.parse(t.dataset.marcas||`[]`);t.hidden=!!(e.value&&t.dataset.praca!==e.value||n.value&&!r.includes(n.value)),t.hidden||i++}document.querySelectorAll(`[data-mes]`).forEach(e=>{e.hidden=!e.querySelector(`[data-peca]:not([hidden])`)});let o=document.querySelector(`.sem-resultado`);if(o&&(o.hidden=i>0),r.textContent=`${i} ${i===1?`registro`:`registros`}`,t){let t=new URL(location.href);for(let r of[e,n])r.value?t.searchParams.set(r.name,r.value):t.searchParams.delete(r.name);t.href!==location.href&&history.pushState({},``,t)}},s=()=>{let t=new URLSearchParams(location.search);for(let r of[e,n]){let e=t.get(r.name)||``;r.value=[...r.options].some(t=>t.value===e)?e:``}o(!1)};i.addEventListener(`change`,()=>o(),{signal:t}),i.addEventListener(`submit`,e=>{e.preventDefault(),o()},{signal:t}),i.addEventListener(`reset`,()=>{e.value=``,n.value=``,o()},{signal:t}),window.addEventListener(`popstate`,s,{signal:t}),s()}document.querySelectorAll(`[data-foto]`).forEach(e=>{e.addEventListener(`click`,t=>{if(t.ctrlKey||t.metaKey||t.shiftKey||t.altKey)return;let n=document.querySelector(`#foto-ampliada`),r=e.querySelector(`img`);if(!n||!r)return;t.preventDefault();let i=n.querySelector(`img`);i.src=r.currentSrc||r.src,i.alt=r.alt,n.querySelector(`figcaption`).textContent=r.alt,n.showModal()},{signal:t})});let a=document.querySelector(`#foto-ampliada`);a?.addEventListener(`click`,e=>{e.target===a&&a.close()},{signal:t})}document.addEventListener(`astro:page-load`,t),document.addEventListener(`astro:before-swap`,()=>e?.abort());</script></body></html>
