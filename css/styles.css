@@ -1,0 +1,1130 @@
+/* ==========================================================================
+   2D Representações — folha de estilo única do site institucional
+   Direção "Instrumento": o dado é o herói. Tipografia Archivo + Inter +
+   Space Mono, auto-hospedada. Spec: docs/superpowers/specs/
+   2026-09-17-site-2d-redesign-design.md
+   ========================================================================== */
+
+/* As fontes sao auto-hospedadas de proposito: o CDN do Google entrega o IP de
+   cada visitante a um terceiro. As tres sao OFL. */
+@font-face{font-family:'Archivo';src:url('../assets/fonts/archivo-800.woff2') format('woff2');
+  font-weight:800;font-style:normal;font-display:swap}
+@font-face{font-family:'Archivo';src:url('../assets/fonts/archivo-900.woff2') format('woff2');
+  font-weight:900;font-style:normal;font-display:swap}
+@font-face{font-family:'Inter';src:url('../assets/fonts/inter-400.woff2') format('woff2');
+  font-weight:400;font-style:normal;font-display:swap}
+@font-face{font-family:'Inter';src:url('../assets/fonts/inter-600.woff2') format('woff2');
+  font-weight:600;font-style:normal;font-display:swap}
+@font-face{font-family:'Space Mono';src:url('../assets/fonts/spacemono-400.woff2') format('woff2');
+  font-weight:400;font-style:normal;font-display:swap}
+@font-face{font-family:'Space Mono';src:url('../assets/fonts/spacemono-700.woff2') format('woff2');
+  font-weight:700;font-style:normal;font-display:swap}
+
+:root{
+  --navy:#353375; --deep:#1a1940; --deep2:#23234f; --soft:#4a4a93;
+  --green:#008349; --green-d:#00693A; --mint:#8ee0b4;
+  --ink:#1e2140; --muted:#5c6180; --line:#e3e4ee; --paper:#f5f6fa; --white:#fff;
+
+  --container:1160px;
+  --disp:'Archivo',system-ui,-apple-system,'Segoe UI',sans-serif;
+  --body:'Inter',system-ui,-apple-system,'Segoe UI',sans-serif;
+  --mono:'Space Mono',ui-monospace,'Cascadia Mono',Consolas,monospace;
+
+  /* Tons de hover/fundo escuro usados em botões, ícones, tag e rodapé —
+     permanentes, não ligados a nenhum idioma antigo. */
+  --navy-deep:#23234f;
+  --green-deep:#00693A;
+  --radius:12px;
+  --radius-sm:8px;
+}
+
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+
+body{
+  margin:0;
+  background:var(--white);
+  color:var(--ink);
+  font-family:var(--body);
+  font-size:16.5px;
+  line-height:1.65;
+  overflow-wrap:break-word;
+  -webkit-font-smoothing:antialiased;
+}
+
+img{max-width:100%}
+h1,h2,h3,p,ul,ol,figure{margin:0}
+
+h1,h2,h3{
+  font-family:var(--disp);
+  font-weight:800;
+  color:var(--navy);
+  line-height:1.0;
+  letter-spacing:-.035em;
+}
+
+a{color:var(--navy)}
+
+a:focus-visible,button:focus-visible{
+  outline:3px solid var(--green);
+  outline-offset:3px;
+  border-radius:4px;
+}
+
+.container{max-width:var(--container);margin:0 auto;padding:0 26px}
+
+/* rotulo tecnico: mono em caixa alta, com regua que se estende */
+.mono{
+  font:700 10.5px/1 var(--mono);
+  letter-spacing:.2em;
+  text-transform:uppercase;
+  color:var(--green);
+  display:flex;
+  align-items:center;
+  gap:12px;
+  margin-bottom:18px;
+}
+.mono::after{content:"";flex:1;height:1px;background:linear-gradient(90deg,rgba(0,131,73,.45),transparent)}
+.mono.on-dark{color:var(--mint)}
+.mono.on-dark::after{background:linear-gradient(90deg,rgba(142,224,180,.5),transparent)}
+
+/* --------------------------------------------------------------- cabeçalho */
+
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 30;
+  background: var(--white);
+  border-bottom: 1px solid var(--line);
+  /* sombra sutil, sempre presente: separa o menu fixo do conteúdo que passa
+     por baixo dele sem depender de listener de scroll. */
+  box-shadow: 0 12px 28px -26px rgba(20, 20, 60, 0.75);
+}
+
+.header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  padding-top: 14px;
+  padding-bottom: 14px;
+}
+
+.logo-link { display: block; line-height: 0; }
+
+.logo { height: 68px; width: auto; display: block; }
+
+.main-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.main-nav a {
+  position: relative;
+  display: block;
+  padding: 8px 12px;
+  border-radius: var(--radius-sm);
+  color: var(--ink);
+  font-size: 0.94rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background-color 0.18s ease, color 0.18s ease;
+}
+
+.main-nav a::after {
+  content: "";
+  position: absolute;
+  left: 12px;
+  right: 12px;
+  bottom: 3px;
+  height: 2px;
+  border-radius: 2px;
+  background: var(--green);
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 0.18s ease;
+}
+
+.main-nav a:hover {
+  background: var(--paper);
+  color: var(--navy);
+}
+
+.main-nav a:hover::after { transform: scaleX(1); }
+
+/* --------------------------------------------------- hero ("Instrumento")
+   Direção aprovada pelo Diego em maquete-home-v5.html: fundo escuro com grade
+   de linhas finas, sem foto. Único hero do site desde a Task 6 — nasceu na
+   home (Task 4), industrias.html adotou na Task 5 sem grid de 2 colunas (só o
+   texto; o bloco de prova vem depois do hero, numa .sec.sec-dark, não dentro
+   dele), e sobre/marcas/contato passaram a usar o mesmo padrão na Task 6,
+   substituindo o hero fotográfico antigo. */
+.hero {
+  position: relative;
+  overflow: hidden;
+  background: var(--deep);
+  color: #fff;
+  padding: 84px 0 74px;
+}
+
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  opacity: .34;
+  pointer-events: none;
+  background-image:
+    linear-gradient(rgba(142, 224, 180, .13) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(142, 224, 180, .13) 1px, transparent 1px);
+  background-size: 42px 42px;
+  mask-image: radial-gradient(120% 95% at 72% 20%, #000 20%, transparent 72%);
+  -webkit-mask-image: radial-gradient(120% 95% at 72% 20%, #000 20%, transparent 72%);
+  animation: grade 30s ease-in-out infinite alternate;
+}
+
+@keyframes grade {
+  from { transform: translate3d(0, 0, 0); }
+  to   { transform: translate3d(-42px, -42px, 0); }
+}
+
+.hero::after {
+  content: "";
+  position: absolute;
+  top: -20%;
+  right: -8%;
+  width: 46%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  pointer-events: none;
+  background: radial-gradient(circle, rgba(74, 74, 147, .55), transparent 68%);
+}
+
+.hero-inner {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1.18fr .82fr;
+  gap: 56px;
+  align-items: center;
+}
+
+@media (max-width: 920px) {
+  .hero-inner { grid-template-columns: 1fr; gap: 40px; }
+}
+
+.hero h1 {
+  color: #fff;
+  font-weight: 800;
+  font-size: clamp(34px, 4.9vw, 62px);
+  letter-spacing: -.04em;
+  line-height: .98;
+}
+
+.hero-lead {
+  font-size: 17px;
+  line-height: 1.62;
+  color: #b9b8d6;
+  max-width: 48ch;
+  margin-top: 22px;
+}
+
+.hero-ctas {
+  display: flex;
+  gap: 11px;
+  flex-wrap: wrap;
+  margin-top: 32px;
+}
+
+/* o numero como objeto: a caixa da prova (#instr), com a regua de 10 barras
+   que o site.js acende ate a oitava — ver #cnt em index.html, e a armadilha
+   de nunca dar opacity:0 para #cnt (ele nao recebe .on, so o texto muda). */
+.instr {
+  border: 1px solid rgba(255, 255, 255, .16);
+  border-radius: 14px;
+  padding: 32px 30px 26px;
+  background: rgba(255, 255, 255, .035);
+  backdrop-filter: blur(2px);
+}
+
+.instr .big {
+  font-family: var(--disp);
+  font-weight: 900;
+  font-size: clamp(88px, 12.5vw, 152px);
+  line-height: .8;
+  letter-spacing: -.065em;
+  color: #fff;
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+}
+
+.instr .big em {
+  font: 700 .2em/1 var(--mono);
+  font-style: normal;
+  color: var(--mint);
+  letter-spacing: .03em;
+}
+
+.instr .lbl {
+  font-family: var(--body);
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 1.4;
+  color: #fff;
+  margin-top: 20px;
+}
+
+.rulebar { display: flex; gap: 4px; margin-top: 22px; }
+
+/* Mesmo padrão invertido do .rv: nasce cheia (8 barras mint, as 2 finais
+   apagadas — o mesmo "8" que já está em #cnt), e só html.js-ok autoriza
+   encolher para a régua animada que o site.js estica de volta com o .on. */
+.rulebar i {
+  height: 6px;
+  flex: 1;
+  border-radius: 2px;
+  display: block;
+  background: var(--mint);
+  transform: scaleY(1);
+}
+.rulebar i:nth-child(n+9) { background: rgba(142, 224, 180, .16); }
+
+html.js-ok .rulebar i {
+  background: rgba(142, 224, 180, .16);
+  transform: scaleY(.4);
+  transform-origin: bottom;
+  transition: transform .45s cubic-bezier(.3, 1.1, .4, 1), background-color .45s;
+}
+
+html.js-ok .instr.on .rulebar i { transform: scaleY(1); }
+html.js-ok .instr.on .rulebar i:nth-child(-n+8) { background: var(--mint); }
+
+.rulebar i:nth-child(1) { transition-delay: .05s; }
+.rulebar i:nth-child(2) { transition-delay: .11s; }
+.rulebar i:nth-child(3) { transition-delay: .17s; }
+.rulebar i:nth-child(4) { transition-delay: .23s; }
+.rulebar i:nth-child(5) { transition-delay: .29s; }
+.rulebar i:nth-child(6) { transition-delay: .35s; }
+.rulebar i:nth-child(7) { transition-delay: .41s; }
+.rulebar i:nth-child(8) { transition-delay: .47s; }
+.rulebar i:nth-child(9) { transition-delay: .53s; }
+.rulebar i:nth-child(10) { transition-delay: .59s; }
+
+.instr .fonte {
+  font: 400 11.5px/1.5 var(--mono);
+  color: #8886b5;
+  margin-top: 18px;
+  padding-top: 16px;
+  border-top: 1px solid rgba(255, 255, 255, .14);
+}
+
+.instr .fonte b { color: var(--mint); font-weight: 700; }
+
+/* ------------------------------------------------------------------ botões */
+
+.btn {
+  display: inline-block;
+  padding: 15px 30px;
+  border-radius: var(--radius);
+  font-size: 1.02rem;
+  font-weight: 700;
+  text-decoration: none;
+  transition: background-color 0.18s ease, color 0.18s ease,
+    border-color 0.18s ease, transform 0.18s ease, box-shadow 0.18s ease;
+}
+
+.btn:hover { transform: translateY(-2px); }
+
+.btn-primary {
+  background: var(--green);
+  color: var(--white);
+  border: 2px solid var(--green);
+}
+
+.btn-primary:hover {
+  background: var(--green-deep);
+  border-color: var(--green-deep);
+  box-shadow: 0 16px 30px -18px rgba(21, 122, 69, 0.85);
+}
+
+.btn-secondary {
+  background: transparent;
+  color: var(--white);
+  border: 2px solid rgba(255, 255, 255, 0.5);
+}
+
+.btn-secondary:hover {
+  background: var(--white);
+  color: var(--navy);
+  border-color: var(--white);
+}
+
+.btn-navy {
+  background: var(--navy);
+  color: var(--white);
+  border: 2px solid var(--navy);
+}
+
+.btn-navy:hover {
+  background: var(--navy-deep);
+  border-color: var(--navy-deep);
+  box-shadow: 0 16px 30px -18px rgba(53, 51, 117, 0.85);
+}
+
+.btn-light {
+  background: var(--white);
+  color: var(--navy);
+  border: 2px solid var(--white);
+}
+
+.btn-light:hover {
+  background: transparent;
+  color: var(--white);
+}
+
+.link-more {
+  display: inline-block;
+  color: var(--navy);
+  font-weight: 700;
+  text-decoration: none;
+  border-bottom: 2px solid var(--green);
+  padding-bottom: 2px;
+  transition: color 0.18s ease, transform 0.18s ease;
+}
+
+.link-more:hover {
+  color: var(--green-deep);
+  transform: translateX(3px);
+}
+
+/* ------------------------------------------------------------------ seções */
+
+.section { padding: 84px 0; }
+
+.section-paper { background: var(--paper); }
+
+.section-title {
+  font-size: clamp(1.85rem, 3vw, 2.6rem);
+  font-weight: 800;
+  letter-spacing: -0.035em;
+}
+
+.section-head {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 24px 56px;
+  align-items: end;
+  margin-bottom: 44px;
+}
+
+.section-head p {
+  color: var(--muted);
+  font-size: 1.06rem;
+  max-width: 58ch;
+}
+
+.page-head {
+  padding-top: 72px;
+  padding-bottom: 8px;
+}
+
+.page-head h1 {
+  font-size: clamp(2.3rem, 4.8vw, 3.7rem);
+  font-weight: 800;
+  letter-spacing: -0.038em;
+  line-height: 1.04;
+  max-width: 18ch;
+}
+
+.page-head .lead {
+  margin-top: 22px;
+  font-size: 1.16rem;
+  color: var(--muted);
+  max-width: 62ch;
+}
+
+.prose p + p { margin-top: 18px; }
+
+.prose { max-width: 68ch; color: var(--ink); }
+
+.prose strong { color: var(--navy); }
+
+/* ------------------------------------------- seções e revelação da home nova
+   .sec/.sec-head são o wrapper "Instrumento" da home (rótulo mono + título
+   empilhado, max-width 64ch) — distinto de .section/.section-head, que as
+   outras páginas continuam usando até a Task 6. .rv é a classe de revelação
+   na rolagem que o site.js (Task 3) acrescenta ".on" quando entra em tela. */
+.sec { padding: 92px 0; }
+.sec-paper { background: var(--paper); }
+.sec-dark { background: var(--deep2); color: #fff; }
+
+.sec-head { max-width: 64ch; margin-bottom: 46px; }
+.sec-head h2 { font-weight: 800; font-size: clamp(28px, 3.5vw, 44px); }
+.sec-dark h2 { color: #fff; }
+.sec-head p { color: var(--muted); margin-top: 16px; font-size: 17px; }
+.sec-dark .sec-head p { color: #b9b8d6; }
+
+/* Padrão invertido (rodada de correção 1): a página nasce no estado final —
+   .rv visível sem nenhuma condição. Só quando html.js-ok provar que o
+   JavaScript rodou (marca colocada inline no <head>, antes do CSS) é que o
+   bloco passa a poder nascer oculto e esperar o .on do site.js. Sem essa
+   marca — JS desligado, bloqueado ou 404 — nada depende de script nenhum. */
+.rv { opacity: 1; transform: none; }
+html.js-ok .rv {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity .68s cubic-bezier(.22, .8, .3, 1), transform .68s cubic-bezier(.22, .8, .3, 1);
+}
+html.js-ok .rv.on { opacity: 1; transform: none; }
+.rv.d1 { transition-delay: .08s; }
+.rv.d2 { transition-delay: .16s; }
+.rv.d3 { transition-delay: .24s; }
+
+/* ------------------------------------------------------------------- cards */
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 22px;
+}
+
+.cards-2 { grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); }
+
+.cards-4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+
+.cards-5 { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+
+.cards-4 .card { padding: 26px 22px; }
+
+.cards-5 .card { padding: 24px 20px; }
+
+.card {
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 28px;
+  transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
+}
+
+.card:hover {
+  transform: translateY(-3px);
+  border-color: #cdd0e6;
+  box-shadow: 0 22px 44px -30px rgba(30, 33, 64, 0.6);
+}
+
+.section-paper .card { box-shadow: 0 1px 0 rgba(53, 51, 117, 0.04); }
+
+.section-paper .card:hover { box-shadow: 0 22px 44px -30px rgba(30, 33, 64, 0.6); }
+
+.card h3 {
+  font-size: 1.16rem;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.card p {
+  color: var(--muted);
+  font-size: 0.99rem;
+}
+
+.card p + p { margin-top: 12px; }
+
+.card .list-marks { margin-top: 16px; }
+
+.card .btn { margin-top: 22px; }
+
+.icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 46px;
+  height: 46px;
+  margin-bottom: 18px;
+  border-radius: 10px;
+  background: rgba(0, 131, 73, 0.12);
+  color: var(--green-deep);
+}
+
+.icon svg { width: 24px; height: 24px; display: block; }
+
+.icon-navy {
+  background: rgba(53, 51, 117, 0.09);
+  color: var(--navy);
+}
+
+/* .cards-num/.card-num: as 3 tiles com rótulo numerado ("O que fazemos") da
+   maquete v5. Nome próprio — não .cards/.card — porque essas classes bases já
+   têm dono em sobre.html/industrias.html/contato.html/marcas.html (com os
+   modificadores cards-2/4/5), com outro visual (borda arredondada por card,
+   não a grade de fios finos da maquete). */
+.cards-num {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  background: var(--line);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  overflow: hidden;
+}
+@media (max-width: 920px) {
+  .cards-num { grid-template-columns: 1fr; }
+}
+.card-num { background: #fff; padding: 34px 28px; transition: background-color .2s; }
+.card-num:hover { background: #fcfcfe; }
+.card-num .n {
+  font: 700 11px/1 var(--mono);
+  color: var(--green);
+  letter-spacing: .16em;
+  margin-bottom: 22px;
+  display: block;
+}
+.card-num h3 { font-weight: 700; font-size: 19px; margin-bottom: 13px; letter-spacing: -.025em; }
+.card-num p { color: var(--muted); font-size: 15px; line-height: 1.62; }
+.card-num p + p { margin-top: 10px; }
+
+/* ------------------------------------------------------- faixa de números */
+
+/* .faixa: substitui a antiga .stats, exclusiva da home — nenhuma outra
+   página referencia .stats/.stat-num, então a troca aqui não deixa nada
+   quebrado. 5 canais · 16 marcas · 2008 · 11 pessoas — sem repetir o "8" da
+   prova do hero (decisão do Diego: dois "8" na mesma tela se enfraquecem). */
+.faixa { background: var(--deep2); color: #fff; padding: 0; }
+.faixa-g { display: grid; grid-template-columns: repeat(4, 1fr); }
+@media (max-width: 820px) {
+  .faixa-g { grid-template-columns: repeat(2, 1fr); }
+}
+.faixa-i { padding: 38px 26px; border-right: 1px solid rgba(255, 255, 255, .1); }
+.faixa-i:last-child { border-right: none; }
+@media (max-width: 820px) {
+  .faixa-i:nth-child(2) { border-right: none; }
+  .faixa-i:nth-child(-n+2) { border-bottom: 1px solid rgba(255, 255, 255, .1); }
+}
+.faixa-i b {
+  font-family: var(--disp);
+  font-weight: 900;
+  font-size: clamp(34px, 4.4vw, 52px);
+  letter-spacing: -.05em;
+  color: #fff;
+  display: block;
+  line-height: .95;
+}
+.faixa-i b small { font: 700 .32em/1 var(--mono); color: var(--mint); letter-spacing: .04em; margin-left: 4px; }
+.faixa-i span { display: block; font: 400 13px/1.5 var(--body); color: #a9a8c9; margin-top: 12px; }
+
+/* ------------------------------------------------------------------ passos */
+
+.steps {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 26px;
+  counter-reset: passo;
+}
+
+.steps li {
+  counter-increment: passo;
+  padding-top: 22px;
+  border-top: 2px solid var(--navy);
+}
+
+.steps li::before {
+  content: counter(passo);
+  display: block;
+  color: var(--green);
+  font-size: 1.5rem;
+  font-weight: 800;
+  line-height: 1;
+  margin-bottom: 14px;
+}
+
+.steps h3 {
+  font-size: 1.12rem;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.steps p {
+  color: var(--muted);
+  font-size: 0.99rem;
+}
+
+/* .passos/.gondola: par "Como trabalhamos" da home nova — os mesmos 3 passos
+   de .steps (que industrias.html continua usando), mas com contador em mono
+   e a gôndola SVG que enche conforme o .rv de cada <li> entra em tela. */
+.passos-wrap { display: grid; grid-template-columns: 1fr .88fr; gap: 54px; align-items: center; }
+@media (max-width: 920px) {
+  .passos-wrap { grid-template-columns: 1fr; }
+}
+.passos { list-style: none; padding: 0; counter-reset: passo-inst; margin: 0; }
+.passos li { counter-increment: passo-inst; position: relative; padding-left: 60px; padding-bottom: 32px; }
+.passos li::before {
+  content: "0" counter(passo-inst);
+  position: absolute;
+  left: 0;
+  top: -2px;
+  font: 700 15px/1 var(--mono);
+  color: var(--green);
+  letter-spacing: .04em;
+}
+.passos li::after { content: ""; position: absolute; left: 13px; top: 22px; bottom: 8px; width: 1px; background: var(--line); }
+.passos li:last-child { padding-bottom: 0; }
+.passos li:last-child::after { display: none; }
+.passos h3 { font-weight: 700; font-size: 18px; margin-bottom: 8px; letter-spacing: -.025em; }
+.passos p { color: var(--muted); font-size: 15px; line-height: 1.62; }
+
+.gondola { background: #fff; border: 1px solid var(--line); border-radius: 12px; padding: 24px; }
+.gondola svg { width: 100%; height: auto; display: block; }
+/* Idem: a gôndola nasce cheia, e só html.js-ok autoriza esvaziar para o
+   site.js encher de novo produto a produto conforme os passos entram em tela. */
+.gondola .prod { opacity: 1; transform: none; }
+html.js-ok .gondola .prod {
+  opacity: 0;
+  transform: translateY(-12px);
+  transition: opacity .48s ease, transform .48s cubic-bezier(.3, 1.2, .5, 1);
+  transition-delay: calc(var(--i, 0) * 62ms);
+}
+html.js-ok .gondola.on .prod { opacity: 1; transform: none; }
+.gondola-cap { font: 400 11.5px/1.5 var(--mono); color: var(--muted); margin-top: 14px; text-align: center; letter-spacing: .04em; }
+
+/* ------------------------------------------------------- listas com marca */
+
+.list-marks {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  gap: 12px;
+}
+
+.list-marks li {
+  position: relative;
+  padding-left: 30px;
+  color: var(--ink);
+}
+
+.list-marks li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 9px;
+  width: 12px;
+  height: 12px;
+  border-radius: 3px;
+  background: var(--green);
+}
+
+.list-marks strong { color: var(--navy); }
+
+.panel {
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  border-left: 5px solid var(--navy);
+  padding: 30px;
+}
+
+.panel-after { margin-top: 26px; }
+
+.panel h3 {
+  font-size: 1.16rem;
+  font-weight: 700;
+  margin-bottom: 16px;
+}
+
+/* ------------------------------------------------- mapa da área de atuação */
+
+.mapa-bloco {
+  display: grid;
+  grid-template-columns: minmax(0, 300px) minmax(0, 430px);
+  justify-content: center;
+  gap: 56px;
+  align-items: center;
+  margin-bottom: 44px;
+  padding: 40px 36px;
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+}
+
+.mapa-figura {
+  margin: 0;
+  text-align: center;
+}
+
+.mapa-ceara {
+  display: block;
+  width: 100%;
+  max-width: 300px;
+  height: auto;
+  margin: 0 auto;
+  /* o SVG já vem em azul-marinho com contorno verde: só o realce de relevo */
+  filter: drop-shadow(0 16px 26px rgba(53, 51, 117, 0.22));
+}
+
+.mapa-figura figcaption {
+  margin-top: 18px;
+  color: var(--navy);
+  font-size: 0.98rem;
+  font-weight: 700;
+}
+
+.mapa-credito {
+  display: block;
+  margin-top: 6px;
+  color: var(--muted);
+  font-size: 0.78rem;
+  font-weight: 400;
+  line-height: 1.4;
+}
+
+.mapa-destaque {
+  color: var(--navy);
+  font-size: clamp(1.35rem, 2.2vw, 1.8rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1.15;
+  margin-bottom: 14px;
+}
+
+.mapa-texto p:not(.mapa-destaque) {
+  color: var(--muted);
+  font-size: 1.04rem;
+  max-width: 46ch;
+}
+
+/* .mapa-wrap/.mapa: mapa interativo da Grande Fortaleza da home nova — não
+   confundir com .mapa-bloco acima (mapa estático do Ceará que sobre.html usa).
+   A silhueta (Task 2) vem embutida no HTML com as mesmas classes .m/.m.a que
+   o SVG de origem já usa; sozinho ele não distingue atendido de não atendido
+   (mesma cor #e7e7f0 nos dois) — .mapa.on .m.a é quem pinta de navy. */
+.mapa-wrap { display: grid; grid-template-columns: 1fr .8fr; gap: 54px; align-items: center; }
+@media (max-width: 920px) {
+  .mapa-wrap { grid-template-columns: 1fr; }
+}
+.mapa svg { width: 100%; height: auto; display: block; }
+.mapa .m { fill: #e7e7f0; stroke: #fff; stroke-width: .7; }
+/* Idem: a mancha nasce preenchida (o estado final que a prova defende), e só
+   html.js-ok autoriza apagar para a rolagem repintar município por município. */
+.mapa .m.a { fill: var(--navy); }
+html.js-ok .mapa .m.a { fill: #e7e7f0; transition: fill .55s cubic-bezier(.3, .9, .4, 1); }
+html.js-ok .mapa.on .m.a { fill: var(--navy); transition-delay: var(--d, 0ms); }
+.legenda { display: flex; gap: 22px; flex-wrap: wrap; margin-top: 26px; font-size: 13.5px; color: var(--muted); }
+.legenda span { display: flex; align-items: center; gap: 9px; }
+.sw { width: 15px; height: 15px; border-radius: 3px; display: block; }
+.nota {
+  margin-top: 26px;
+  padding: 16px 18px;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-left: 3px solid var(--green);
+  border-radius: 6px;
+  font-size: 14px;
+  line-height: 1.55;
+  color: var(--muted);
+}
+.nota b { color: var(--navy); }
+.mapa-title { font-size: clamp(28px, 3.5vw, 44px); }
+.mapa-lead { color: var(--muted); margin-top: 16px; font-size: 17px; }
+
+/* ------------------------------------------------------- faixa das marcas */
+
+/* .logos/.tile: faixa "Empresas que representamos" da home nova. Substitui
+   .logo-tile/.logos-5/.logos-foot (exclusivas da home — nenhuma outra página
+   as usa) pela grade de fios finos da maquete, uma fileira de 5. */
+.logos {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 1px;
+  background: var(--line);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  overflow: hidden;
+}
+@media (max-width: 920px) {
+  .logos { grid-template-columns: repeat(2, 1fr); }
+}
+.tile { background: #fff; height: 116px; padding: 16px; display: flex; align-items: center; justify-content: center; transition: background-color .2s; }
+.tile:hover { background: #fbfbfe; }
+.tile img { display: block; width: auto; height: auto; max-width: 82%; max-height: var(--h, 44px); object-fit: contain; }
+.logos-nota { margin-top: 20px; font-size: 13.5px; color: var(--muted); }
+.logos-nota b { color: var(--navy); }
+
+/* ------------------------------- grid de empresas representadas e marcas */
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 22px;
+}
+
+/* .grid-5: fileira das empresas representadas — cartão com selo de segmento
+   e uma linha de descrição. .grid-6: fileira densa das marcas de gôndola,
+   só logo, nome e a empresa dona. Mesmo cartão, densidades diferentes. */
+.grid-5 { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+
+.grid-5 .card-body { padding: 20px 18px 24px; }
+
+.grid-6 { grid-template-columns: repeat(6, minmax(0, 1fr)); }
+
+/* fundo branco na vitrine das marcas: vários logos vêm com moldura branca
+   embutida e ela desaparece contra o cartão em vez de virar um quadrado. */
+.grid-6 .card-plate { height: 112px; padding: 16px; background: var(--white); }
+
+.grid-6 .card img { max-height: 72px; max-width: 86%; }
+
+.grid-6 .card-body { padding: 16px 16px 18px; }
+
+.grid-6 .card h3 { font-size: 1.02rem; margin-bottom: 8px; }
+
+.grid .card {
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  overflow: hidden;
+}
+
+.grid .card img {
+  display: block;
+  width: auto;
+  max-width: 78%;
+  max-height: 58px;
+  margin: 0 auto;
+  object-fit: contain;
+}
+
+.card-plate {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 118px;
+  padding: 20px;
+  background: var(--paper);
+  border-bottom: 1px solid var(--line);
+}
+
+/* marca cujo logo oficial é branco (Sal Lebre) sumiria no cartão claro:
+   só essa placa recebe fundo azul-marinho. */
+.card-plate-dark,
+.grid-6 .card-plate-dark {
+  background: var(--navy);
+  border-bottom-color: var(--navy);
+}
+
+.card-body { padding: 22px 24px 26px; }
+
+.card-body h3 { margin-bottom: 10px; }
+
+.card-body .tag {
+  display: inline-block;
+  margin: 0 0 12px;
+  padding: 4px 11px;
+  border-radius: 999px;
+  background: rgba(0, 131, 73, 0.12);
+  color: var(--green-deep);
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+
+.card-body .tag + p { margin-top: 0; }
+
+/* selo neutro: diz a que empresa a marca pertence sem competir com o nome */
+.card-body .tag-owner {
+  margin-bottom: 0;
+  background: var(--paper);
+  color: var(--muted);
+  font-weight: 600;
+}
+
+/* .cta: faixa de ação final, "Instrumento" — verde sólido com grade fina,
+   sem foto. Único CTA do site desde a Task 6, quando substituiu a faixa de
+   ação fotográfica antiga em sobre/marcas/contato. */
+.cta { background: var(--green); color: #fff; padding: 78px 0; position: relative; overflow: hidden; }
+.cta::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  opacity: .2;
+  pointer-events: none;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, .3) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, .3) 1px, transparent 1px);
+  background-size: 42px 42px;
+}
+.cta-inner { position: relative; display: flex; align-items: center; justify-content: space-between; gap: 36px; flex-wrap: wrap; }
+.cta-h2 { color: #fff; font-weight: 800; font-size: clamp(27px, 3.3vw, 42px); }
+.cta-p { color: rgba(255, 255, 255, .9); margin-top: 14px; max-width: 50ch; font-size: 16px; }
+.cta .fine { font: 400 12px/1.5 var(--mono); color: rgba(255, 255, 255, .72); margin-top: 18px; letter-spacing: .03em; }
+.cta .btn-light { display: inline-flex; align-items: center; gap: 9px; }
+.cta .btn-light svg { width: 18px; height: 18px; flex: none; }
+
+/* ------------------------------------------------------------------ rodapé */
+
+.site-footer {
+  background: var(--navy-deep);
+  color: #c3c6e8;
+  font-size: 0.96rem;
+}
+
+.footer-top {
+  display: grid;
+  grid-template-columns: 1.6fr 1fr 1fr;
+  gap: 40px;
+  padding-top: 56px;
+  padding-bottom: 40px;
+}
+
+.logo-footer {
+  height: 54px;
+  width: auto;
+  display: block;
+  margin-bottom: 20px;
+}
+
+.footer-brand p { max-width: 44ch; line-height: 1.6; }
+
+.footer-title {
+  color: var(--white);
+  font-size: 1rem;
+  font-weight: 700;
+  margin-bottom: 14px;
+}
+
+.footer-list {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  gap: 10px;
+}
+
+.site-footer a {
+  color: #c3c6e8;
+  text-decoration: none;
+}
+
+.site-footer a:hover {
+  color: var(--white);
+  text-decoration: underline;
+}
+
+.footer-bottom {
+  border-top: 1px solid rgba(255, 255, 255, 0.14);
+  padding-top: 22px;
+  padding-bottom: 30px;
+  font-size: 0.9rem;
+}
+
+/* ------------------------------------------------------------- responsivo */
+
+@media (max-width: 980px) {
+  .mapa-bloco {
+    grid-template-columns: minmax(0, 1fr);
+    justify-content: stretch;
+    gap: 30px;
+    padding: 32px 28px;
+  }
+
+  .mapa-texto p:not(.mapa-destaque) { max-width: none; }
+
+  .section-head {
+    grid-template-columns: 1fr;
+    align-items: start;
+    gap: 16px;
+  }
+
+  .cards-4,
+  .cards-5 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+
+  .grid,
+  .logos { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+
+  .grid-5,
+  .grid-6 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+
+  .footer-top {
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+  }
+
+  .footer-brand { grid-column: 1 / -1; }
+}
+
+@media (max-width: 720px) {
+  body { font-size: 16px; }
+
+  /* só o recuo lateral: usar o atalho aqui zeraria o padding vertical
+     das seções que também são .container (hero, rodapé, faixa verde). */
+  .container {
+    padding-left: 18px;
+    padding-right: 18px;
+  }
+
+  /* o menu segue fixo no mobile: cabeçalho enxuto pra não comer a tela */
+  .header-inner {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+    padding-top: 10px;
+    padding-bottom: 8px;
+  }
+
+  .logo { height: 50px; }
+
+  .main-nav { gap: 2px; }
+
+  .main-nav a {
+    padding: 5px 9px;
+    font-size: 0.86rem;
+  }
+
+  .main-nav a::after {
+    left: 9px;
+    right: 9px;
+    bottom: 1px;
+  }
+
+  .section { padding: 58px 0; }
+
+  .page-head { padding-top: 48px; }
+
+  .mapa-bloco { padding: 24px 20px; }
+
+  .mapa-ceara { max-width: 260px; }
+
+  .cards,
+  .cards-2,
+  .cards-4,
+  .cards-5,
+  .grid,
+  .steps { grid-template-columns: 1fr; }
+
+  /* marcas de gôndola seguem 2 por linha no celular: o cartão é só logo,
+     nome e empresa, e uma coluna só deixaria a seção longa demais.
+     As empresas representadas, que têm descrição, caem para uma coluna
+     junto com o .grid comum. */
+  .grid-6 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+
+  .card-plate { height: 96px; }
+
+  .card { padding: 24px; }
+
+  .panel { padding: 24px 22px; }
+
+  .footer-top {
+    grid-template-columns: 1fr;
+    gap: 28px;
+    padding-top: 44px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; animation: none !important; }
+
+  /* .hero::before/.hero::after não têm transform próprio fora da animação
+     (a grade e o círculo já nascem parados sem ela), e .rv/.mapa .m.a/
+     .gondola .prod/.rulebar não precisam de regra
+     aqui — desde a rodada de correção 1 (achado 2) a base deles já nasce no
+     estado final, e só html.js-ok (marca inline no <head>, provando que o
+     JavaScript rodou) autoriza escondê-los à espera do .on. Sem JS, com JS
+     bloqueado, ou com movimento reduzido, o resultado é o mesmo: visível
+     desde o primeiro paint. */
+}
