@@ -6,6 +6,16 @@
   <title>Marcas Representadas | 2D Representações</title>
   <meta name="description" content="As empresas representadas pela 2D Representações no mercado cearense — JBS, Josapar, Miolo, Norsal e Nutrimais — e as marcas que elas colocam na gôndola, de Friboi e Tio João a Miolo Vintage e Sal Lebre.">
   <link rel="icon" type="image/png" href="assets/logo/favicon.png">
+  <!-- Mesmo padrão de index.html/industrias.html (ver comentário lá): prova que
+       o JavaScript rodou ANTES da primeira pintura, para os blocos .rv
+       poderem nascer visíveis e só passar a "poder esconder" depois disso.
+       Falhar aberto, nunca fechado. -->
+  <script>
+    document.documentElement.className += ' js-ok';
+    window.addEventListener('error', function () {
+      document.documentElement.classList.remove('js-ok');
+    });
+  </script>
   <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
@@ -24,12 +34,11 @@
     </div>
   </header>
 
-  <section class="hero hero-compact hero-foto hero-marcas">
-    <span class="hero-luz" aria-hidden="true"></span>
+  <section class="hero">
     <div class="container hero-inner">
-      <div class="hero-text">
+      <div>
+        <p class="mono on-dark">Representação comercial · Ceará</p>
         <h1>As empresas que representamos e as marcas que elas põem na gôndola</h1>
-        <div class="hero-rule"></div>
         <p class="hero-lead">Do vinho ao sal. De um lado, as indústrias que entregam à 2D a operação comercial no Ceará; do outro, as marcas que o consumidor encontra na loja. Segmentos que não se parecem em nada — e que chegam ao varejo, ao atacado, aos distribuidores, ao atacarejo e às farmácias pela mesma estrutura de vendas, promoção e retaguarda.</p>
       </div>
     </div>
@@ -38,11 +47,12 @@
   <section class="section">
     <div class="container">
       <div class="section-head">
-        <h2 class="section-title">Empresas representadas</h2>
-        <p>As indústrias que a 2D representa no mercado cearense. É com elas que acertamos política comercial, meta e relatório de vendas.</p>
+        <p class="mono rv">Indústrias</p>
+        <h2 class="section-title rv d1">Empresas representadas</h2>
+        <p class="rv d2">As indústrias que a 2D representa no mercado cearense. É com elas que acertamos política comercial, meta e relatório de vendas.</p>
       </div>
       <div class="grid grid-5">
-        <div class="card">
+        <div class="card rv">
           <div class="card-plate"><img src="assets/empresas/jbs.svg" alt="JBS"></div>
           <div class="card-body">
             <h3>JBS</h3>
@@ -50,7 +60,7 @@
             <p>Indústria de carnes, com operação que exige acerto fino de pedido, entrega e estoque.</p>
           </div>
         </div>
-        <div class="card">
+        <div class="card rv">
           <div class="card-plate"><img src="assets/empresas/josapar.png" alt="Josapar"></div>
           <div class="card-body">
             <h3>Josapar</h3>
@@ -58,7 +68,7 @@
             <p>Indústria de alimentos especialista em arroz, do varejo ao atacarejo.</p>
           </div>
         </div>
-        <div class="card">
+        <div class="card rv">
           <div class="card-plate"><img src="assets/empresas/miolo.webp" alt="Miolo"></div>
           <div class="card-body">
             <h3>Miolo</h3>
@@ -66,7 +76,7 @@
             <p>Vinícola que levamos à gôndola de bebidas do varejo e do atacado cearense.</p>
           </div>
         </div>
-        <div class="card">
+        <div class="card rv">
           <div class="card-plate"><img src="assets/empresas/norsal.png" alt="Norsal"></div>
           <div class="card-body">
             <h3>Norsal</h3>
@@ -74,7 +84,7 @@
             <p>Indústria salina: básico de mercearia que ninguém deixa faltar na prateleira.</p>
           </div>
         </div>
-        <div class="card">
+        <div class="card rv">
           <div class="card-plate"><img src="assets/empresas/nutrimais.png" alt="Nutrimais"></div>
           <div class="card-body">
             <h3>Nutrimais</h3>
@@ -89,130 +99,131 @@
   <section class="section section-paper">
     <div class="container">
       <div class="section-head">
-        <h2 class="section-title">Marcas nas gôndolas</h2>
-        <p>O que o comprador vê na prateleira. Cada marca aparece com a indústria a que pertence, porque é assim que a conta é tratada no dia a dia.</p>
+        <p class="mono rv">Marcas</p>
+        <h2 class="section-title rv d1">Marcas nas gôndolas</h2>
+        <p class="rv d2">O que o comprador vê na prateleira. Cada marca aparece com a indústria a que pertence, porque é assim que a conta é tratada no dia a dia.</p>
       </div>
       <div class="grid grid-6">
-        <div class="card">
+        <div class="card rv">
           <div class="card-plate"><img src="assets/marcas/friboi.svg" alt="Friboi"></div>
           <div class="card-body">
             <h3>Friboi</h3>
             <p class="tag tag-owner">JBS</p>
           </div>
         </div>
-        <div class="card">
+        <div class="card rv">
           <div class="card-plate"><img src="assets/marcas/friboi-reserva.png" alt="Friboi Reserva"></div>
           <div class="card-body">
             <h3>Friboi Reserva</h3>
             <p class="tag tag-owner">JBS</p>
           </div>
         </div>
-        <div class="card">
+        <div class="card rv">
           <div class="card-plate"><img src="assets/marcas/black-friboi.png" alt="Black Friboi"></div>
           <div class="card-body">
             <h3>Black Friboi</h3>
             <p class="tag tag-owner">JBS</p>
           </div>
         </div>
-        <div class="card">
+        <div class="card rv">
           <div class="card-plate"><img src="assets/marcas/maturatta.png" alt="Maturatta"></div>
           <div class="card-body">
             <h3>Maturatta</h3>
             <p class="tag tag-owner">JBS</p>
           </div>
         </div>
-        <div class="card">
+        <div class="card rv">
           <div class="card-plate"><img src="assets/marcas/1953.png" alt="1953"></div>
           <div class="card-body">
             <h3>1953</h3>
             <p class="tag tag-owner">JBS</p>
           </div>
         </div>
-        <div class="card">
+        <div class="card rv">
           <div class="card-plate"><img src="assets/marcas/do-chef.png" alt="Do Chef"></div>
           <div class="card-body">
             <h3>Do Chef</h3>
             <p class="tag tag-owner">JBS</p>
           </div>
         </div>
-        <div class="card">
+        <div class="card rv">
           <div class="card-plate"><img src="assets/marcas/tiojoao.webp" alt="Tio João"></div>
           <div class="card-body">
             <h3>Tio João</h3>
             <p class="tag tag-owner">Josapar</p>
           </div>
         </div>
-        <div class="card">
+        <div class="card rv">
           <div class="card-plate"><img src="assets/marcas/meubiju.png" alt="Meu Biju"></div>
           <div class="card-body">
             <h3>Meu Biju</h3>
             <p class="tag tag-owner">Josapar</p>
           </div>
         </div>
-        <div class="card">
+        <div class="card rv">
           <div class="card-plate"><img src="assets/marcas/suprasoy.webp" alt="SupraSoy"></div>
           <div class="card-body">
             <h3>SupraSoy</h3>
             <p class="tag tag-owner">Josapar</p>
           </div>
         </div>
-        <div class="card">
+        <div class="card rv">
           <div class="card-plate"><img src="assets/marcas/soymais.png" alt="Soy+"></div>
           <div class="card-body">
             <h3>Soy+</h3>
             <p class="tag tag-owner">Josapar</p>
           </div>
         </div>
-        <div class="card">
+        <div class="card rv">
           <div class="card-plate"><img src="assets/marcas/nova-oliva.png" alt="Azeite Nova Oliva"></div>
           <div class="card-body">
             <h3>Azeite Nova Oliva</h3>
             <p class="tag tag-owner">Josapar</p>
           </div>
         </div>
-        <div class="card">
+        <div class="card rv">
           <div class="card-plate"><img src="assets/marcas/vintage.png" alt="Miolo Vintage"></div>
           <div class="card-body">
             <h3>Miolo Vintage</h3>
             <p class="tag tag-owner">Miolo</p>
           </div>
         </div>
-        <div class="card">
+        <div class="card rv">
           <div class="card-plate"><img src="assets/marcas/norsal.png" alt="Norsal"></div>
           <div class="card-body">
             <h3>Norsal</h3>
             <p class="tag tag-owner">Norsal</p>
           </div>
         </div>
-        <div class="card">
+        <div class="card rv">
           <div class="card-plate card-plate-dark"><img src="assets/marcas/lebre.svg" alt="Sal Lebre"></div>
           <div class="card-body">
             <h3>Sal Lebre</h3>
             <p class="tag tag-owner">Norsal</p>
           </div>
         </div>
-        <div class="card">
+        <div class="card rv">
           <div class="card-plate"><img src="assets/marcas/miramar.png" alt="Miramar"></div>
           <div class="card-body">
             <h3>Miramar</h3>
             <p class="tag tag-owner">Norsal</p>
           </div>
         </div>
-        <div class="card">
+        <div class="card rv">
           <div class="card-plate"><img src="assets/marcas/almirante.png" alt="Almirante"></div>
           <div class="card-body">
             <h3>Almirante</h3>
             <p class="tag tag-owner">Norsal</p>
           </div>
         </div>
-        <div class="card">
+        <div class="card rv">
           <div class="card-plate"><img src="assets/marcas/piramide.png" alt="Sal Pirâmide"></div>
           <div class="card-body">
             <h3>Sal Pirâmide</h3>
             <p class="tag tag-owner">Norsal</p>
           </div>
         </div>
-        <div class="card">
+        <div class="card rv">
           <div class="card-plate"><img src="assets/marcas/nutrimais.png" alt="Nutrimais"></div>
           <div class="card-body">
             <h3>Nutrimais</h3>
@@ -225,9 +236,9 @@
 
   <section class="cta">
     <div class="container cta-inner">
-      <div class="cta-text">
-        <h2>Quer ver sua marca aqui?</h2>
-        <p>Se a sua indústria quer presença no Ceará, explicamos como funciona a representação e o que ela entrega todo mês. Sem rodeios.</p>
+      <div>
+        <h2 class="cta-h2">Quer ver sua marca aqui?</h2>
+        <p class="cta-p">Se a sua indústria quer presença no Ceará, explicamos como funciona a representação e o que ela entrega todo mês. Sem rodeios.</p>
       </div>
       <a href="industrias.html" class="btn btn-light">Ver proposta para indústrias</a>
     </div>
@@ -254,6 +265,9 @@
         <ul class="footer-list">
           <li><a href="mailto:contato@2drep.com.br">contato@2drep.com.br</a></li>
           <li>WhatsApp: <a href="https://wa.me/5585981801200">(85) 98180-1200</a></li>
+          <li><a href="https://instagram.com/2drepres">Instagram: @2drepres</a></li>
+          <li><a href="https://www.linkedin.com/company/2drepres/">LinkedIn: /2drepres</a></li>
+          <li><a href="https://www.facebook.com/profile.php?id=61594131366941">Facebook</a></li>
         </ul>
       </div>
     </div>
@@ -261,5 +275,7 @@
       <p>&copy; 2026 2D Representações Ltda. Representação comercial no Ceará.</p>
     </div>
   </footer>
+
+  <script src="js/site.js" defer onerror="document.documentElement.classList.remove('js-ok')"></script>
 </body>
 </html>

@@ -6,6 +6,16 @@
   <title>Contato | 2D Representações</title>
   <meta name="description" content="Fale com a 2D Representações: atendimento a clientes do varejo, atacado, distribuidores, atacarejo e farmácias, e a indústrias que querem representação no Ceará.">
   <link rel="icon" type="image/png" href="assets/logo/favicon.png">
+  <!-- Mesmo padrão de index.html/industrias.html (ver comentário lá): prova que
+       o JavaScript rodou ANTES da primeira pintura, para os blocos .rv
+       poderem nascer visíveis e só passar a "poder esconder" depois disso.
+       Falhar aberto, nunca fechado. -->
+  <script>
+    document.documentElement.className += ' js-ok';
+    window.addEventListener('error', function () {
+      document.documentElement.classList.remove('js-ok');
+    });
+  </script>
   <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
@@ -24,12 +34,11 @@
     </div>
   </header>
 
-  <section class="hero hero-compact hero-foto hero-contato">
-    <span class="hero-luz" aria-hidden="true"></span>
+  <section class="hero">
     <div class="container hero-inner">
-      <div class="hero-text">
+      <div>
+        <p class="mono on-dark">Representação comercial · Ceará</p>
         <h1>Fale com a 2D Representações</h1>
-        <div class="hero-rule"></div>
         <p class="hero-lead">Duas portas, o mesmo endereço: quem já compra com a 2D e precisa resolver o dia a dia comercial, e a indústria que quer ser representada no Ceará. Escreva contando o assunto — quanto mais específico você for, mais rápido resolvemos.</p>
       </div>
     </div>
@@ -38,7 +47,7 @@
   <section class="section">
     <div class="container">
       <div class="cards cards-2">
-        <div class="card">
+        <div class="card rv">
           <span class="icon" aria-hidden="true">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 4.2h2.6l2.2 10.1a1.6 1.6 0 0 0 1.55 1.25h7.3a1.6 1.6 0 0 0 1.55-1.25L19.8 8.2H6.2"/><circle cx="9.4" cy="19.2" r="1.6"/><circle cx="17" cy="19.2" r="1.6"/></svg>
           </span>
@@ -52,7 +61,7 @@
           </ul>
           <a href="mailto:contato@2drep.com.br" class="btn btn-primary">Falar com a equipe comercial</a>
         </div>
-        <div class="card">
+        <div class="card rv d1">
           <span class="icon icon-navy" aria-hidden="true">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="12" r="5.2"/><circle cx="15" cy="12" r="5.2"/></svg>
           </span>
@@ -64,7 +73,7 @@
             <li>O que você espera do Ceará</li>
             <li>Se já tem operação no estado hoje</li>
           </ul>
-          <a href="mailto:contato@2drep.com.br" class="btn btn-navy">Falar sobre representação</a>
+          <a href="https://wa.me/5585981801200?text=Sou%20da%20ind%C3%BAstria%20___%20e%20quero%20falar%20sobre%20representa%C3%A7%C3%A3o%20no%20Cear%C3%A1." class="btn btn-navy">Falar sobre representação</a>
         </div>
       </div>
     </div>
@@ -73,10 +82,11 @@
   <section class="section section-paper">
     <div class="container">
       <div class="section-head">
-        <h2 class="section-title">Canais de atendimento</h2>
-        <p>E-mail e WhatsApp são os caminhos oficiais para chegar até a 2D.</p>
+        <p class="mono rv">Contato</p>
+        <h2 class="section-title rv d1">Canais de atendimento</h2>
+        <p class="rv d2">E-mail e WhatsApp são os caminhos oficiais para chegar até a 2D.</p>
       </div>
-      <div class="panel">
+      <div class="panel rv">
         <h3>Onde falar com a 2D</h3>
         <ul class="list-marks">
           <li><strong>E-mail:</strong> <a href="mailto:contato@2drep.com.br">contato@2drep.com.br</a></li>
@@ -108,6 +118,9 @@
         <ul class="footer-list">
           <li><a href="mailto:contato@2drep.com.br">contato@2drep.com.br</a></li>
           <li>WhatsApp: <a href="https://wa.me/5585981801200">(85) 98180-1200</a></li>
+          <li><a href="https://instagram.com/2drepres">Instagram: @2drepres</a></li>
+          <li><a href="https://www.linkedin.com/company/2drepres/">LinkedIn: /2drepres</a></li>
+          <li><a href="https://www.facebook.com/profile.php?id=61594131366941">Facebook</a></li>
         </ul>
       </div>
     </div>
@@ -115,5 +128,7 @@
       <p>&copy; 2026 2D Representações Ltda. Representação comercial no Ceará.</p>
     </div>
   </footer>
+
+  <script src="js/site.js" defer onerror="document.documentElement.classList.remove('js-ok')"></script>
 </body>
 </html>

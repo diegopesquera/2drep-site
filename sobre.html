@@ -6,6 +6,16 @@
   <title>Sobre a 2D Representações | Representação comercial no Ceará</title>
   <meta name="description" content="Quem é a 2D Representações: empresa de representação comercial no Ceará, fundada por Antonio Rodrigues e Diego Pesquera, com equipe de 11 pessoas em campo e na retaguarda.">
   <link rel="icon" type="image/png" href="assets/logo/favicon.png">
+  <!-- Mesmo padrão de index.html/industrias.html (ver comentário lá): prova que
+       o JavaScript rodou ANTES da primeira pintura, para os blocos .rv
+       poderem nascer visíveis e só passar a "poder esconder" depois disso.
+       Falhar aberto, nunca fechado. -->
+  <script>
+    document.documentElement.className += ' js-ok';
+    window.addEventListener('error', function () {
+      document.documentElement.classList.remove('js-ok');
+    });
+  </script>
   <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
@@ -24,12 +34,11 @@
     </div>
   </header>
 
-  <section class="hero hero-compact hero-foto hero-sobre">
-    <span class="hero-luz" aria-hidden="true"></span>
+  <section class="hero">
     <div class="container hero-inner">
-      <div class="hero-text">
+      <div>
+        <p class="mono on-dark">Representação comercial · Ceará</p>
         <h1>Uma empresa de representação comercial feita na rua</h1>
-        <div class="hero-rule"></div>
         <p class="hero-lead">A 2D Representações Ltda é o braço comercial das marcas que representamos dentro do mercado cearense. Quem compra essas marcas está no supermercado, no atacado, na distribuição, no atacarejo e na farmácia — e é lá que a nossa equipe aparece.</p>
       </div>
     </div>
@@ -38,12 +47,12 @@
   <section class="section">
     <div class="container">
       <div class="cards cards-2">
-        <div class="prose">
+        <div class="prose rv">
           <p>A 2D foi fundada por <strong>Antonio Rodrigues</strong> e <strong>Diego Pesquera</strong> para fazer o trabalho que não se faz de longe: sentar com o comprador, entender como cada rede funciona por dentro e garantir que o produto chegue, apareça e gire.</p>
           <p>Representar uma marca, para nós, é responder por ela aqui. A negociação e o pedido, claro — mas também tudo o que vem depois: entrega, devolução, comissão, campanha de vendas e a leitura franca do que os números estão dizendo.</p>
           <p>Trabalhamos para os dois lados da mesma mesa. Se você compra, é com a nossa equipe que você resolve o dia a dia comercial. Se você é a indústria, a nossa estrutura passa a ser a sua no Ceará.</p>
         </div>
-        <div class="panel">
+        <div class="panel rv d1">
           <h3>A 2D em resumo</h3>
           <ul class="list-marks">
             <li><strong>Portfólio</strong> de vinho a sal: Friboi, Tio João, Miolo Vintage, Sal Lebre, Nutrimais e as demais marcas</li>
@@ -60,11 +69,12 @@
   <section class="section section-paper">
     <div class="container">
       <div class="section-head">
-        <h2 class="section-title">Como trabalhamos</h2>
-        <p>Venda boa é a que sai da gôndola. Por isso, o acompanhamento não termina no pedido aprovado — é ali que ele começa.</p>
+        <p class="mono rv">Metodologia</p>
+        <h2 class="section-title rv d1">Como trabalhamos</h2>
+        <p class="rv d2">Venda boa é a que sai da gôndola. Por isso, o acompanhamento não termina no pedido aprovado — é ali que ele começa.</p>
       </div>
       <div class="cards cards-2">
-        <div class="panel">
+        <div class="panel rv">
           <h3>Três frentes, o tempo todo</h3>
           <ul class="list-marks">
             <li><strong>Giro no ponto de venda:</strong> exposição, reposição, validade e preço visível, conferidos por promotor dentro da loja.</li>
@@ -72,7 +82,7 @@
             <li><strong>Gestão comercial ativa:</strong> pedido, faturamento, agendamento de entrega, devolução, comissão e campanha de vendas acompanhados de ponta a ponta.</li>
           </ul>
         </div>
-        <div class="prose">
+        <div class="prose rv d1">
           <p>Cada visita gera informação, e nenhuma se perde: ela vira relatório de vendas, análise de metas e apresentação para o cliente e para a indústria, com o que foi comprado, o que saiu e o que precisa ser corrigido.</p>
           <p>É trabalho de rotina, e é assim que preferimos: a mesma loja visitada de novo, o mesmo número conferido de novo. Marca forte no Ceará se constrói assim, e não em ação pontual.</p>
         </div>
@@ -83,32 +93,33 @@
   <section class="section">
     <div class="container">
       <div class="section-head">
-        <h2 class="section-title">Nossa equipe</h2>
-        <p>Somos 11 pessoas: parte na rua, parte na retaguarda. Toda a equipe na mesma carteira, olhando a mesma informação.</p>
+        <p class="mono rv">Equipe</p>
+        <h2 class="section-title rv d1">Nossa equipe</h2>
+        <p class="rv d2">Somos 11 pessoas: parte na rua, parte na retaguarda. Toda a equipe na mesma carteira, olhando a mesma informação.</p>
       </div>
       <div class="cards cards-4">
-        <div class="card">
+        <div class="card rv">
           <span class="icon icon-navy" aria-hidden="true">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3.3"/><path d="M3 20c0-3.3 2.7-5.6 6-5.6s6 2.3 6 5.6"/><path d="M16 5.4a3.3 3.3 0 0 1 0 6.2"/><path d="M17.6 14.9c2.1.7 3.4 2.5 3.4 5.1"/></svg>
           </span>
           <h3>Sócios à frente das vendas</h3>
           <p>As negociações das principais contas passam pelos sócios. Quem decide senta na mesa com você, e isso encurta o prazo de resposta dos dois lados.</p>
         </div>
-        <div class="card">
+        <div class="card rv d1">
           <span class="icon icon-navy" aria-hidden="true">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3.2 12.4V4.2h8.2L21 13.8 13.2 21z"/><circle cx="7.4" cy="7.9" r="1.5"/></svg>
           </span>
           <h3>Promoção e merchandising</h3>
           <p>Coordenação que planeja a execução no PDV e cobra o resultado: exposição, material, campanha e a prioridade de cada marca em cada loja.</p>
         </div>
-        <div class="card">
+        <div class="card rv d2">
           <span class="icon icon-navy" aria-hidden="true">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="4" width="14" height="17" rx="2.2"/><path d="M9.2 4h5.6v3H9.2z"/><path d="M9 11.6h6"/><path d="M9 15.4h4"/></svg>
           </span>
           <h3>Assistência comercial</h3>
           <p>Retaguarda que cuida de pedido, faturamento, agendamento de entrega, devolução e comissão. É aqui que o combinado com você vira processo.</p>
         </div>
-        <div class="card">
+        <div class="card rv d3">
           <span class="icon icon-navy" aria-hidden="true">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s7-5.7 7-11a7 7 0 1 0-14 0c0 5.3 7 11 7 11z"/><circle cx="12" cy="10" r="2.6"/></svg>
           </span>
@@ -122,11 +133,12 @@
   <section class="section section-paper">
     <div class="container">
       <div class="section-head">
-        <h2 class="section-title">Área de atuação</h2>
-        <p>Atendemos o Ceará em cinco canais. Cada um compra de um jeito diferente, e o nosso atendimento muda junto.</p>
+        <p class="mono rv">Cobertura</p>
+        <h2 class="section-title rv d1">Área de atuação</h2>
+        <p class="rv d2">Atendemos o Ceará em cinco canais. Cada um compra de um jeito diferente, e o nosso atendimento muda junto.</p>
       </div>
 
-      <div class="mapa-bloco">
+      <div class="mapa-bloco rv">
         <figure class="mapa-figura">
           <img src="assets/mapa/ceara.svg" alt="Contorno do estado do Ceará" class="mapa-ceara" width="746" height="907">
           <figcaption>
@@ -141,35 +153,35 @@
       </div>
 
       <div class="cards cards-5">
-        <div class="card">
+        <div class="card rv">
           <span class="icon" aria-hidden="true">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3.2 9h17.6l-1.6-4.4a1 1 0 0 0-.94-.66H5.74a1 1 0 0 0-.94.66L3.2 9z"/><path d="M5 9v10.5h14V9"/><path d="M9.5 19.5V13h5v6.5"/></svg>
           </span>
           <h3>Varejo</h3>
           <p>Supermercado e rede de bairro, onde exposição e reposição decidem a venda.</p>
         </div>
-        <div class="card">
+        <div class="card rv">
           <span class="icon" aria-hidden="true">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3.2l8 4.4v8.8L12 20.8 4 16.4V7.6z"/><path d="M4 7.6l8 4.4 8-4.4"/><path d="M12 12v8.8"/></svg>
           </span>
           <h3>Atacado</h3>
           <p>Volume e giro, com atenção fina a preço, prazo e mix por operação.</p>
         </div>
-        <div class="card">
+        <div class="card rv">
           <span class="icon" aria-hidden="true">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="6.6" width="11.5" height="9" rx="1.4"/><path d="M14 9.6h3.9l3.6 3.6v2.4H14z"/><circle cx="7" cy="18" r="1.7"/><circle cx="17" cy="18" r="1.7"/></svg>
           </span>
           <h3>Distribuidores</h3>
           <p>Quem leva a marca ao interior, com apoio da nossa equipe em campo.</p>
         </div>
-        <div class="card">
+        <div class="card rv">
           <span class="icon" aria-hidden="true">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 4.2h2.6l2.2 10.1a1.6 1.6 0 0 0 1.55 1.25h7.3a1.6 1.6 0 0 0 1.55-1.25L19.8 8.2H6.2"/><circle cx="9.4" cy="19.2" r="1.6"/><circle cx="17" cy="19.2" r="1.6"/></svg>
           </span>
           <h3>Atacarejo</h3>
           <p>Loja que atende o consumidor e o pequeno comércio na mesma prateleira.</p>
         </div>
-        <div class="card">
+        <div class="card rv">
           <span class="icon" aria-hidden="true">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3.4" y="3.4" width="17.2" height="17.2" rx="4.2"/><path d="M12 8v8"/><path d="M8 12h8"/></svg>
           </span>
@@ -182,9 +194,9 @@
 
   <section class="cta">
     <div class="container cta-inner">
-      <div class="cta-text">
-        <h2>Quer conversar com a 2D?</h2>
-        <p>Atendimento comercial, campanha no ponto de venda ou representação da sua marca no Ceará: conte o assunto e respondemos.</p>
+      <div>
+        <h2 class="cta-h2">Quer conversar com a 2D?</h2>
+        <p class="cta-p">Atendimento comercial, campanha no ponto de venda ou representação da sua marca no Ceará: conte o assunto e respondemos.</p>
       </div>
       <a href="contato.html" class="btn btn-light">Ir para o contato</a>
     </div>
@@ -211,6 +223,9 @@
         <ul class="footer-list">
           <li><a href="mailto:contato@2drep.com.br">contato@2drep.com.br</a></li>
           <li>WhatsApp: <a href="https://wa.me/5585981801200">(85) 98180-1200</a></li>
+          <li><a href="https://instagram.com/2drepres">Instagram: @2drepres</a></li>
+          <li><a href="https://www.linkedin.com/company/2drepres/">LinkedIn: /2drepres</a></li>
+          <li><a href="https://www.facebook.com/profile.php?id=61594131366941">Facebook</a></li>
         </ul>
       </div>
     </div>
@@ -218,5 +233,7 @@
       <p>&copy; 2026 2D Representações Ltda. Representação comercial no Ceará.</p>
     </div>
   </footer>
+
+  <script src="js/site.js" defer onerror="document.documentElement.classList.remove('js-ok')"></script>
 </body>
 </html>
