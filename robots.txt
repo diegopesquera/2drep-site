@@ -1,0 +1,7 @@
+# 2D Representações — https://2drep.com.br
+# Site institucional, sem área restrita e sem conteúdo a esconder.
+
+User-agent: *
+Allow: /
+
+Sitemap: https://2drep.com.br/sitemap-index.xml
